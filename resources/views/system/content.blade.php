@@ -3,7 +3,7 @@
 @section("content")
 
     <main class="p-5">
-        <div class="flex justify-between items-center">
+        <div class="flex justify-between items-center h-16 border-b border-slate-200">
             <h3 class="text-2xl font-black">İçerik Yönetimi</h3>
 
             <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"

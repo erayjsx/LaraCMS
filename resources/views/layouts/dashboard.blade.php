@@ -25,65 +25,55 @@
     </style>
 </head>
 
+@php
+    $items = [
+        ['title' => 'Gösterge Paneli', 'route' => 'system'],
+        ['title' => 'İçerik Yönetimi', 'route' => 'system/content'],
+        ['title' => 'Kategoriler', 'route' => 'system/categories'],
+        ['title' => 'Ayarlar', 'route' => 'system/settings'],
+    ];
+@endphp
+
+
 <body>
     @if(request()->route()->getName() != 'login')
-        <header class="flex px-5 h-20 bg-slate-900 text-white shadow-lg">
-            <div class="flex justify-between items-center gap-8 container mx-auto w-full h-20">
-                <div class="flex items-center gap-10 max-lg:hidden h-20">
-                    <a href="/system">
-                        <img src="https://www.freeiconspng.com/uploads/hd-trendyol-text-logo-high-quality-png-27.png"
-                            alt="logo" class="h-6 brightness-0 invert">
-                    </a>
-                    <div
-                        class="flex items-center gap-4 text-sm *:opacity-70 *:hover:opacity-100 *:transition *:flex *:items-center *:gap-2">
-                        <a href="/system">
-                            Gösterge Paneli
-                        </a>
-                        <a href="/system/content">
-                            İçerik Yönetimi
-                        </a>
-                        <div class="dropdown dropdown-hover">
-                            <a href="/system/content" class="flex items-center gap-2">
-                                Kategoriler
-                                <i class="ph-bold ph-caret-down text-base"></i>
-                            </a>
-
-                            <ul class="dropdown-menu dropdown-menu-end" role="menu">
-                                <li><a class="dropdown-item" href="/system/settings">Ayarlar</a></li>
-                                <form action="{{ route('logout') }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="dropdown-item">Çıkış Yap</button>
-                                </form>
-                            </ul>
-                        </div>
-                    </div>
+        <div class="layout">
+            <main class="layout-main">
+                @yield('content')
+            </main>
+            <aside class="layout-sidebar border-end max-lg:hidden" style="width:280px">
+                <div
+                    class="flex flex-col gap-2 h-16 items-start px-4 justify-center text-2xl font-bold border-b border-slate-200 mb-2">
+                    Panel
                 </div>
+                <div
+                    class="flex flex-col items-center text-sm *:opacity-70 gap-2 *:hover:opacity-100 *:transition *:flex *:gap-2 *:px-3 *:py-3 *:rounded-lg *:w-full px-4">
 
-                <div class="dropdown dropdown-hover">
-                    <div role="button" data-bs-toggle="dropdown" aria-expanded="false"
-                        class="flex items-center gap-2 h-14 bg-slate-800 py-2 px-4 rounded-full overflow-hidden">
-                        <span class="avatar text-bg-primary">U</span>
-                        <div class="flex flex-col text-sm justify-center text-left leading-none gap-0 space-y-0">
-                            <p class="text-sm pb-0 mb-0">{{ auth()->user()->name }}</p>
-                            <p class="text-xs opacity-70 pb-0 mb-0">{{ auth()->user()->email }}</p>
-                        </div>
-                    </div>
-                    <ul class="dropdown-menu dropdown-menu-end" role="menu">
-                        <li><a class="dropdown-item" href="/system/settings">Ayarlar</a></li>
-                        <form action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <button type="submit" class="dropdown-item">Çıkış Yap</button>
-                        </form>
-                    </ul>
+                    @foreach ($items as $item)
+                        <a href="/{{ $item['route'] }}"
+                            class="text-lg {{ request()->is($item['route']) ? 'bg-slate-200 opacity-100' : 'hover:bg-slate-200' }}">
+                            {{ $item['title'] }}
+                        </a>
+                    @endforeach
+
                 </div>
-            </div>
-
-        </header>
+            </aside>
+            <footer class="layout-footer">
+                <ul class="dropdown-menu dropdown-menu-end" role="menu">
+                    <li><a class="dropdown-item" href="/system/settings">Ayarlar</a></li>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="dropdown-item">Çıkış Yap</button>
+                    </form>
+                </ul>
+            </footer>
+        </div>
+    @else
+        <main class="p-3 container">
+            @yield('content')
+        </main>
     @endif
 
-    <main class="p-3 container">
-        @yield('content')
-    </main>
 
     <script src="{{ asset('js/script.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
