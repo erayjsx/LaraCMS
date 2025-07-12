@@ -17,4 +17,14 @@ export default defineConfig({
             vue: "vue/dist/vue.esm-bundler.js",
         },
     },
+    build: {
+        manifest: true,
+        outDir: "public/build",
+        rollupOptions: {
+            input: {
+                app: "resources/js/app.js",
+                css: "resources/css/app.css",
+            },
+        },
+    },
 });
