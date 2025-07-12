@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { ref, computed, defineComponent, h } from "vue";
 import { useCartStore } from "../../stores/cart";
+import { themeOverrides } from "../../libs/theme";
+import { NConfigProvider, MenuOption } from "naive-ui";
 
 defineProps({
     title: String,
@@ -15,6 +17,7 @@ function addToCart(product) {
 const cartItemCount = computed(() => cartStore.itemCount);
 const active = ref(false);
 const active2 = ref(false);
+const activeKey = ref("");
 
 const activate = () => {
     active.value = true;
@@ -55,9 +58,6 @@ const menuOptions: MenuOption[] = [
         ],
     },
 ];
-
-import { themeOverrides } from "../../libs/theme";
-import { NConfigProvider } from "naive-ui";
 
 const formatPrice = (price) => {
     return new Intl.NumberFormat("tr-TR", {

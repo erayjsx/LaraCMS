@@ -23,5 +23,6 @@ app.use(pinia);
 
 app.mount("#app");
 
+// Uygulama mount edildikten sonra localStorage'dan sepet verilerini yükle
 const cartStore = useCartStore();
 cartStore.loadFromStorage();
