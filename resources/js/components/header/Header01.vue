@@ -1,8 +1,17 @@
 <script lang="ts" setup>
-import { ref, computed, defineComponent, h, watch } from "vue";
+import type { Component } from "vue";
+import { ref, computed, h, watch, render } from "vue";
 import { useCartStore } from "../../stores/cart";
 import { themeOverrides } from "../../libs/theme";
-import { NConfigProvider, MenuOption } from "naive-ui";
+import { NConfigProvider, MenuOption, NIcon } from "naive-ui";
+import {
+    PhChevronDown,
+    PhUser,
+    PhShoppingBag,
+    PhMinus,
+    PhPlus,
+    PhTrash,
+} from "@phosphor-icons/vue";
 
 defineProps({
     title: String,
@@ -27,14 +36,16 @@ const activate2 = () => {
     active2.value = true;
 };
 
-// Ürün sepete eklendiğinde drawer'ı aç
+function renderIcon(icon: Component) {
+    return () => h(NIcon, null, { default: () => h(icon, { size: 20 }) });
+}
+
 watch(
     () => cartStore.justAdded,
     (newValue) => {
         if (newValue) {
             active.value = true;
 
-            // Sayfa en üste çıkar
             window.scrollTo({
                 top: 0,
                 behavior: "smooth",
@@ -88,15 +99,21 @@ const cartTotal = computed(() => cartStore.totalPrice);
 
 <template>
     <n-config-provider :theme-overrides="themeOverrides">
-        <div class="bg-white top-0 sticky z-50">
+        <div
+            style="
+                background-color: #fff;
+                top: 0px;
+                z-index: 1000;
+                position: sticky !important;
+                width: 100%;
+            "
+        >
             <div
+                class="container mx-auto px-4"
                 style="
-                    padding: 0 2rem;
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    max-width: 1280px;
-                    margin: 0 auto;
                     height: 80px;
                 "
             >
@@ -133,6 +150,7 @@ const cartTotal = computed(() => cartStore.totalPrice);
                         mode="horizontal"
                         :options="menuOptions"
                         responsive
+                        class="*:text-base *:font-medium *:*:text-base"
                     />
                 </div>
 

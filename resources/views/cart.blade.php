@@ -1,22 +1,27 @@
-<!DOCTYPE html>
-<html lang="tr">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8" />
-    <title>Vue E-Ticaret</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
+@section('content')
+    <div class="container mx-auto px-4 py-4 flex row">
+        <div class="w-2/3">
+            <h1 class="text-2xl font-bold">Sepetim (1 Ürün)</h1>
+        </div>
 
-<body class="bg-gray-50">
-    <div id="app">
-        <header01 :title="'E-Ticaret'"></header01>
-
-        <main class="max-w-screen-xl mx-auto w-full">
-            asd
-        </main>
+        <div class="w-1/3 p-4 rounded-lg bg-gray-100">
+            <div class="flex flex-col gap-4">
+                <div class="flex flex-col gap-2">
+                    <h1 class="text-lg font-bold">Sipariş Özeti</h1>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <div class="flex justify-between">
+                        <span>Toplam Fiyat</span>
+                        <span>100 TL</span>
+                    </div>
+                </div>
+                <a href="/checkout"
+                    class="bg-black text-white p-2 h-14 font-semibold rounded-md text-center flex items-center justify-center">
+                    Alışverişi Tamamla
+                </a>
+            </div>
+        </div>
     </div>
-</body>
-
-</html>
+@endsection
