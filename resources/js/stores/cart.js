@@ -3,6 +3,7 @@ import { defineStore } from "pinia";
 export const useCartStore = defineStore("cart", {
     state: () => ({
         items: [],
+        justAdded: false, // Yeni eklenen ürün için flag
     }),
 
     getters: {
@@ -46,6 +47,14 @@ export const useCartStore = defineStore("cart", {
                 this.items.push({ ...product, quantity: 1 });
             }
             this.saveToStorage();
+            
+            // Ürün eklendi flag'ini set et
+            this.justAdded = true;
+            
+            // 100ms sonra flag'i resetle
+            setTimeout(() => {
+                this.justAdded = false;
+            }, 100);
         },
 
         removeItem(id) {

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, computed, defineComponent, h } from "vue";
+import { ref, computed, defineComponent, h, watch } from "vue";
 import { useCartStore } from "../../stores/cart";
 import { themeOverrides } from "../../libs/theme";
 import { NConfigProvider, MenuOption } from "naive-ui";
@@ -26,6 +26,22 @@ const activate = () => {
 const activate2 = () => {
     active2.value = true;
 };
+
+// Ürün sepete eklendiğinde drawer'ı aç
+watch(
+    () => cartStore.justAdded,
+    (newValue) => {
+        if (newValue) {
+            active.value = true;
+
+            // Sayfa en üste çıkar
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
+        }
+    }
+);
 
 const menuOptions: MenuOption[] = [
     {
@@ -72,7 +88,7 @@ const cartTotal = computed(() => cartStore.totalPrice);
 
 <template>
     <n-config-provider :theme-overrides="themeOverrides">
-        <div>
+        <div class="bg-white top-0 sticky z-50">
             <div
                 style="
                     padding: 0 2rem;
@@ -84,16 +100,33 @@ const cartTotal = computed(() => cartStore.totalPrice);
                     height: 80px;
                 "
             >
-                <a href="/">
-                    <img
-                        src="https://cdn.myikas.com/images/theme-images/679894db-720e-48b8-a486-262c61877b8a/image_720.webp"
-                        alt="logo"
-                        style="width: 200px; height: 80px; object-fit: contain"
-                    />
-                </a>
+                <div class="flex items-center gap-4">
+                    <div class="lg:hidden">
+                        <n-button
+                            @click="activate"
+                            type="none"
+                            style="padding: 0"
+                        >
+                            <PhList :size="26" />
+                        </n-button>
+                    </div>
+
+                    <a href="/" class="w-32">
+                        <img
+                            src="https://www.wavedijital.com/logo.png"
+                            alt="logo"
+                            style="
+                                width: 100%;
+                                height: 100%;
+                                object-fit: contain;
+                            "
+                        />
+                    </a>
+                </div>
 
                 <div
                     style="@media screen and (max-width: 768px) {display: none}"
+                    class="max-lg:hidden"
                 >
                     <n-menu
                         v-model:value="activeKey"

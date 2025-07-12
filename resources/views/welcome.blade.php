@@ -1,26 +1,23 @@
-<!DOCTYPE html>
-<html lang="tr">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8" />
-    <title>Vue E-Ticaret</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
+@php
+    $items = [
+        [
+            'id' => 1,
+            'image' => 'https://cdn.myikas.com/images/theme-images/1c28e6be-4097-49c1-b97b-9295cc618646/image_3840.webp',
+            'link' => '/products/1',
+        ],
+        [
+            'id' => 2,
+            'image' => 'https://cdn.myikas.com/images/theme-images/1c28e6be-4097-49c1-b97b-9295cc618646/image_3840.webp',
+            'link' => '/products/2',
+        ],
+    ];
+@endphp
 
-<body class="bg-gray-50">
-    <div id="app">
-        <header01 :title="'E-Ticaret'"></header01>
-        
-        <main>
-            <product-list></product-list>
-        </main>
+@section('content')
+    <carousel01 :form-item-props='@json($items)'></carousel01>
+    <div class="container mx-auto">
+        <product-list></product-list>
     </div>
-    
-    <script>
-        console.log('Welcome page loaded');
-    </script>
-</body>
-
-</html>
+@endsection

@@ -42,6 +42,7 @@ class ProductController extends Controller
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
             'image' => 'nullable|string|max:255',
+            'slug' => 'required|string|unique:products,slug|max:255',
         ]);
 
         $product = Product::create($validated);
@@ -60,6 +61,20 @@ class ProductController extends Controller
     public function show(string $id)
     {
         $product = Product::findOrFail($id);
+        
+        if (request()->expectsJson()) {
+            return response()->json($product);
+        }
+        
+        return view('products.show', compact('product'));
+    }
+
+    /**
+     * Display the specified resource by slug.
+     */
+    public function showBySlug(string $slug)
+    {
+        $product = Product::where('slug', $slug)->firstOrFail();
         
         if (request()->expectsJson()) {
             return response()->json($product);
@@ -90,6 +105,7 @@ class ProductController extends Controller
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
             'image' => 'nullable|string|max:255',
+            'slug' => 'required|string|unique:products,slug,' . $product->id . '|max:255',
         ]);
 
         $product->update($validated);

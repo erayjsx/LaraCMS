@@ -16,11 +16,14 @@ const isAdding = ref(false);
 
 const addToCart = async () => {
     isAdding.value = true;
+
+    // Ürünü sepete ekle
     cart.addItem(props.product);
 
+    // Sepete ekleme animasyonu için bekle
     setTimeout(() => {
         isAdding.value = false;
-    }, 800);
+    }, 1200);
 };
 
 const formatPrice = (price) => {
@@ -49,7 +52,7 @@ const getImageUrl = (imagePath) => {
         <div
             class="bg-white overflow-hidden hover:shadow-lg transition-shadow duration-300 group product-card"
         >
-            <a :href="`/product/${product.id}`" class="relative">
+            <a :href="`/${product.slug}`" class="relative">
                 <img
                     :src="getImageUrl(product.image)"
                     :alt="product.name"

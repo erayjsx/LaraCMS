@@ -12,15 +12,8 @@ Route::get('/', function () {
 });
 
 Route::resource('products', ProductController::class);
-Route::get('/product/{id}', function ($id) {
-    return view('product', compact('id'));
-});
-
+Route::get('/{slug}', [ProductController::class, 'showBySlug'])->name('product.show');
 Route::post('/orders', [OrderController::class, 'store'])->middleware('auth');
-Route::get('/cart', function () {
-    return view('cart');
-})->name('cart');
-
 
 Route::get('/404', function () {
     return view('404');
