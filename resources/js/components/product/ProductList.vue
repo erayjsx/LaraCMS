@@ -1,6 +1,11 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
+import { useIsMobile } from "../../libs/useIsMobile";
 import ProductCard from "./ProductCard.vue";
+
+defineProps({
+    title: String,
+});
 
 const products = ref([]);
 const loading = ref(false);
@@ -35,18 +40,23 @@ const fetchProducts = async () => {
 onMounted(() => {
     fetchProducts();
 });
+
+const { isMobile } = useIsMobile();
+
+const slidePerViews = computed(() => (isMobile.value ? 1 : 4));
+const arrowShow = computed(() => products.value.length > slidePerViews.value);
 </script>
 
 <template>
-    <div class="container mx-auto px-4 py-8">
-        <h2 class="text-3xl font-bold mb-8 text-gray-800">Ürünlerimiz</h2>
+    <div class="py-8 w-full px-0">
+        <h2 v-if="title" class="text-2xl font-semibold mb-8 text-gray-800">
+            {{ title }}
+        </h2>
 
-        <!-- Loading State -->
         <div v-if="loading" class="flex justify-center items-center py-12">
             <PhSpinnerGap :size="48" class="animate-spin" />
         </div>
 
-        <!-- Error State -->
         <div v-else-if="error" class="text-center py-12">
             <div
                 class="bg-red-50 border border-red-200 rounded-lg p-6 max-w-md mx-auto"
@@ -110,11 +120,12 @@ onMounted(() => {
         </div>
 
         <n-carousel
-            :slides-per-view="4"
+            :slides-per-view="slidePerViews"
             :space-between="20"
             :loop="false"
             draggable
-            show-arrow
+            :show-arrow="arrowShow"
+            :show-dots="false"
             class="product-carousel"
         >
             <ProductCard

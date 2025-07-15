@@ -4,12 +4,14 @@
     $items = [
         [
             'id' => 1,
-            'image' => 'https://cdn.myikas.com/images/theme-images/1c28e6be-4097-49c1-b97b-9295cc618646/image_3840.webp',
+            'image' =>
+                'https://cdn.myikas.com/images/theme-images/1c28e6be-4097-49c1-b97b-9295cc618646/image_3840.webp',
             'link' => '/products/1',
         ],
         [
             'id' => 2,
-            'image' => 'https://cdn.myikas.com/images/theme-images/1c28e6be-4097-49c1-b97b-9295cc618646/image_3840.webp',
+            'image' =>
+                'https://cdn.myikas.com/images/theme-images/1c28e6be-4097-49c1-b97b-9295cc618646/image_3840.webp',
             'link' => '/products/2',
         ],
     ];
@@ -17,7 +19,8 @@
 
 @section('content')
     <carousel01 :form-item-props='@json($items)'></carousel01>
-    <div class="container mx-auto">
-        <product-list></product-list>
+    <div class="container mx-auto px-4">
+        <product-list title='Son Eklenen Ürünler'></product-list>
+        <product-list title='Yeni Sezon'></product-list>
     </div>
 @endsection

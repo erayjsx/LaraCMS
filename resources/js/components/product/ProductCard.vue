@@ -56,7 +56,7 @@ const getImageUrl = (imagePath) => {
                 <img
                     :src="getImageUrl(product.image)"
                     :alt="product.name"
-                    class="w-full object-cover aspect-square"
+                    class="w-full object-cover aspect-4/5"
                 />
                 <div
                     v-if="product.stock <= 0"
@@ -67,17 +67,19 @@ const getImageUrl = (imagePath) => {
             </a>
 
             <div class="p-4">
-                <h3
-                    class="font-semibold text-lg mb-2 text-gray-800 line-clamp-2"
-                >
-                    {{ product.name }}
-                </h3>
+                <a :href="`/${product.slug}`">
+                    <h3
+                        class="font-semibold text-lg mb-2 text-gray-800 line-clamp-2"
+                    >
+                        {{ product.name }}
+                    </h3>
+                </a>
 
                 <p
                     v-if="product.description"
-                    class="text-gray-600 text-sm mb-4 line-clamp-2"
+                    class="text-gray-600 text-sm mb-4 line-clamp-2 h-10"
                 >
-                    {{ product.description }}
+                    {{ product.description }}asdasdasd
                 </p>
 
                 <div class="flex flex-col h-full justify-between">
@@ -128,7 +130,7 @@ const getImageUrl = (imagePath) => {
                         </span>
                         <span
                             v-else
-                            class="flex items-center justify-center gap-2"
+                            class="flex items-center justify-center gap-2 w-full"
                         >
                             <PhShoppingCart :size="20" />
                             Sepete Ekle

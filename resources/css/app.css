@@ -1,8 +1,8 @@
-@import url("https://fonts.cdnfonts.com/css/br-shape");
+@import url("https://fonts.googleapis.com/css2?family=TikTok+Sans:opsz,wght@12..36,300..900&display=swap");
 
 html,
 body {
-    font-family: "BR Shape", sans-serif !important;
+    font-family: "TikTok Sans", sans-serif !important;
 }
 
 .cart-drawer {

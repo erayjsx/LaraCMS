@@ -2,6 +2,6 @@
 
 @section('content')
     <div class="container mx-auto min-h-screen">
-        asd
+        zxc
     </div>
 @endsection
