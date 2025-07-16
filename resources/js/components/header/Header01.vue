@@ -87,10 +87,15 @@ const menuOptions: MenuOption[] = [
                         <MobileMenu />
                     </div>
 
-                    <a href="/" class="w-32">
+                    <a
+                        href="/"
+                        class="w-32"
+                        aria-label="Anasayfa"
+                        title="Anasayfa"
+                    >
                         <img
                             src="https://www.wavedijital.com/logo.png"
-                            alt="logo"
+                            alt="Wavedijital Logo"
                             style="
                                 width: 100%;
                                 height: 100%;
@@ -123,8 +128,17 @@ const menuOptions: MenuOption[] = [
                     "
                 >
                     <Search01 />
-                    <n-button type="none" style="padding: 0">
-                        <a href="/login">
+                    <n-button
+                        type="none"
+                        style="padding: 0"
+                        aria-label="Giriş Yap"
+                        title="Giriş Yap"
+                    >
+                        <a
+                            href="/login"
+                            aria-label="Giriş Yap"
+                            title="Giriş Yap"
+                        >
                             <PhUser :size="26" />
                         </a>
                     </n-button>

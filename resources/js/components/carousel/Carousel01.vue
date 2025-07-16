@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from "vue";
+import { computed } from "vue";
 import { useIsMobile } from "../../libs/useIsMobile";
 
 defineProps({
@@ -18,7 +18,7 @@ const showArrows = computed(() => (isMobile.value ? false : true));
         class="product-carousel"
     >
         <a v-for="item in formItemProps" :key="item.id" :href="item.link">
-            <img class="carousel-img" :src="item.image" />
+            <img class="carousel-img" :src="item.image" :alt="item.name" />
         </a>
 
         <template #arrow="{ prev, next }">

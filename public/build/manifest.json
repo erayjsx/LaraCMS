@@ -1,16 +1,133 @@
 {
+  "_ProductCard-BHVaCGBP.js": {
+    "file": "assets/ProductCard-BHVaCGBP.js",
+    "name": "ProductCard",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "__plugin-vue_export-helper-DlAUqK2U.js"
+    ],
+    "css": [
+      "assets/ProductCard-D68-B3Q7.css"
+    ]
+  },
+  "_ProductCard-D68-B3Q7.css": {
+    "file": "assets/ProductCard-D68-B3Q7.css",
+    "src": "_ProductCard-D68-B3Q7.css"
+  },
+  "__plugin-vue_export-helper-DlAUqK2U.js": {
+    "file": "assets/_plugin-vue_export-helper-DlAUqK2U.js",
+    "name": "_plugin-vue_export-helper"
+  },
+  "_useIsMobile-BBt5eZsA.js": {
+    "file": "assets/useIsMobile-BBt5eZsA.js",
+    "name": "useIsMobile",
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
   "resources/css/app.css": {
-    "file": "assets/css-8CjoI92N.css",
+    "file": "assets/css-BAcZ3aIb.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/js/app.js": {
-    "file": "assets/app-D01H_zOl.js",
+    "file": "assets/app-DmAqjhBa.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
+    "dynamicImports": [
+      "resources/js/components/header/Header01.vue",
+      "resources/js/components/404.vue",
+      "_ProductCard-BHVaCGBP.js",
+      "resources/js/components/product/ProductList.vue",
+      "resources/js/components/carousel/Carousel01.vue",
+      "resources/js/components/footer/Footer01.vue",
+      "resources/js/components/checkout/CheckoutList.vue",
+      "resources/js/components/product/ProductGallery.vue"
+    ]
+  },
+  "resources/js/components/404.vue": {
+    "file": "assets/404-DLwFW4Km.js",
+    "name": "404",
+    "src": "resources/js/components/404.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "__plugin-vue_export-helper-DlAUqK2U.js"
+    ]
+  },
+  "resources/js/components/carousel/Carousel01.vue": {
+    "file": "assets/Carousel01-BSq1KVbt.js",
+    "name": "Carousel01",
+    "src": "resources/js/components/carousel/Carousel01.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_useIsMobile-BBt5eZsA.js",
+      "__plugin-vue_export-helper-DlAUqK2U.js"
+    ],
     "css": [
-      "assets/app-HX2PggGH.css"
+      "assets/Carousel01-Cyf7E5Cu.css"
+    ]
+  },
+  "resources/js/components/checkout/CheckoutList.vue": {
+    "file": "assets/CheckoutList-DMywDuFR.js",
+    "name": "CheckoutList",
+    "src": "resources/js/components/checkout/CheckoutList.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/components/footer/Footer01.vue": {
+    "file": "assets/Footer01-DMnM6Y1Z.js",
+    "name": "Footer01",
+    "src": "resources/js/components/footer/Footer01.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/components/header/Header01.vue": {
+    "file": "assets/Header01-Cbbz2pET.js",
+    "name": "Header01",
+    "src": "resources/js/components/header/Header01.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_ProductCard-BHVaCGBP.js",
+      "resources/js/components/product/ProductList.vue",
+      "__plugin-vue_export-helper-DlAUqK2U.js",
+      "_useIsMobile-BBt5eZsA.js"
+    ]
+  },
+  "resources/js/components/product/ProductGallery.vue": {
+    "file": "assets/ProductGallery-Dm_FDHmj.js",
+    "name": "ProductGallery",
+    "src": "resources/js/components/product/ProductGallery.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "__plugin-vue_export-helper-DlAUqK2U.js"
+    ],
+    "css": [
+      "assets/ProductGallery---aSd61B.css"
+    ]
+  },
+  "resources/js/components/product/ProductList.vue": {
+    "file": "assets/ProductList-Zlbmbd_z.js",
+    "name": "ProductList",
+    "src": "resources/js/components/product/ProductList.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "_useIsMobile-BBt5eZsA.js",
+      "_ProductCard-BHVaCGBP.js",
+      "__plugin-vue_export-helper-DlAUqK2U.js"
+    ],
+    "css": [
+      "assets/ProductList-Cegjyy-W.css"
     ]
   }
 }

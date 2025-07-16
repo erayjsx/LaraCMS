@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, computed, h, watch, render } from "vue";
+import { ref, computed, watch } from "vue";
 import { useCartStore } from "../../stores/cart";
 import { PhShoppingBag, PhMinus, PhPlus, PhTrash } from "@phosphor-icons/vue";
 

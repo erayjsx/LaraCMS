@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { h, ref } from "vue";
+import { ref } from "vue";
 import ProductList from "../product/ProductList.vue";
 
 const search = ref(false);

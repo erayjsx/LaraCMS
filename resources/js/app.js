@@ -1,49 +1,146 @@
-
-
-import { createApp } from "vue";
-import naive from "naive-ui";
-import PhosphorIcons from "@phosphor-icons/vue";
+import { createApp, defineAsyncComponent } from "vue";
 import { createPinia } from "pinia";
-import { useCartStore } from "./stores/cart";
-
-import Header01 from "./components/header/Header01.vue";
-import NotFound from "./components/404.vue";
-import ProductCard from "./components/product/ProductCard.vue";
-import ProductList from "./components/product/ProductList.vue";
-import Carousel01 from "./components/carousel/Carousel01.vue";
-import Footer01 from "./components/footer/Footer01.vue";
-import CheckoutList from "./components/checkout/CheckoutList.vue";
-import ProductGallery from "./components/product/ProductGallery.vue";
+import {
+    create,
+    NButton,
+    NInput,
+    NModal,
+    NCard,
+    NNotificationProvider,
+    NDrawer,
+    NDrawerContent,
+    NConfigProvider,
+    NMenu,
+    NSpace,
+    NCarousel,
+    NIcon,
+    NResult,
+    NBadge,
+    NTabs,
+    NTabPane,
+    NTab,
+    NForm,
+    NFormItem,
+    NFormItemCol,
+    NFormItemRow,
+    NBreadcrumb,
+    NBreadcrumbItem,
+} from "naive-ui";
+import {
+    PhUser,
+    PhShoppingBag,
+    PhMinus,
+    PhPlus,
+    PhTrash,
+    PhArrowLeft,
+    PhArrowRight,
+    PhInstagramLogo,
+    PhXLogo,
+    PhFacebookLogo,
+    PhYoutubeLogo,
+    PhShoppingCart,
+    PhSpinnerGap,
+    PhMagnifyingGlass,
+    PhList,
+} from "@phosphor-icons/vue";
 
 import { themeOverrides } from "./libs/theme";
 
 const app = createApp({});
 const pinia = createPinia();
-
-app.component("header01", Header01);
-app.component("not-found", NotFound);
-app.component("product-card", ProductCard);
-app.component("product-list", ProductList);
-app.component("carousel01", Carousel01);
-app.component("footer01", Footer01);
-app.component("checkout-list", CheckoutList);
-app.component("product-gallery", ProductGallery);
-
-app.use(naive);
-app.use(PhosphorIcons);
-app.use(pinia);
-app.use(naive, {
-    themeOverrides: themeOverrides,
+const naive = create({
+    components: [
+        NButton,
+        NInput,
+        NModal,
+        NCard,
+        NNotificationProvider,
+        NMenu,
+        NSpace,
+        NCarousel,
+        NIcon,
+        NResult,
+        NModal,
+        NConfigProvider,
+        NDrawer,
+        NDrawerContent,
+        NConfigProvider,
+        NBadge,
+        NTabs,
+        NTab,
+        NTabPane,
+        NForm,
+        NFormItem,
+        NFormItemCol,
+        NFormItemRow,
+        NBreadcrumb,
+        NBreadcrumbItem,
+    ],
+    themeOverrides,
 });
+
+app.component(
+    "header01",
+    defineAsyncComponent(() => import("./components/header/Header01.vue"))
+);
+app.component(
+    "not-found",
+    defineAsyncComponent(() => import("./components/404.vue"))
+);
+app.component(
+    "product-card",
+    defineAsyncComponent(() => import("./components/product/ProductCard.vue"))
+);
+app.component(
+    "product-list",
+    defineAsyncComponent(() => import("./components/product/ProductList.vue"))
+);
+app.component(
+    "carousel01",
+    defineAsyncComponent(() => import("./components/carousel/Carousel01.vue"))
+);
+app.component(
+    "footer01",
+    defineAsyncComponent(() => import("./components/footer/Footer01.vue"))
+);
+app.component(
+    "checkout-list",
+    defineAsyncComponent(() => import("./components/checkout/CheckoutList.vue"))
+);
+app.component(
+    "product-gallery",
+    defineAsyncComponent(() =>
+        import("./components/product/ProductGallery.vue")
+    )
+);
+
+app.use(pinia);
+app.use(naive);
+
+app.component("PhUser", PhUser);
+app.component("PhShoppingBag", PhShoppingBag);
+app.component("PhMinus", PhMinus);
+app.component("PhPlus", PhPlus);
+app.component("PhTrash", PhTrash);
+app.component("PhArrowLeft", PhArrowLeft);
+app.component("PhArrowRight", PhArrowRight);
+app.component("PhInstagramLogo", PhInstagramLogo);
+app.component("PhXLogo", PhXLogo);
+app.component("PhFacebookLogo", PhFacebookLogo);
+app.component("PhYoutubeLogo", PhYoutubeLogo);
+app.component("PhShoppingCart", PhShoppingCart);
+app.component("PhSpinnerGap", PhSpinnerGap);
+app.component("PhMagnifyingGlass", PhMagnifyingGlass);
+app.component("PhList", PhList);
 
 app.mount("#app");
 
+import { useCartStore } from "./stores/cart";
 const cartStore = useCartStore();
 cartStore.loadFromStorage();
 
 window.addEventListener("add-to-cart", (event) => {
     const { product, quantity } = event.detail;
-
     for (let i = 0; i < quantity; i++) {
         cartStore.addItem(product);
     }

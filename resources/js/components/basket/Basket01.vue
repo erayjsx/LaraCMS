@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, computed, h, watch, render } from "vue";
+import { ref, computed, watch } from "vue";
 import { useCartStore } from "../../stores/cart";
 import { PhShoppingBag, PhMinus, PhPlus, PhTrash } from "@phosphor-icons/vue";
 
@@ -43,7 +43,13 @@ const cartTotal = computed(() => cartStore.totalPrice);
 </script>
 
 <template>
-    <n-button @click="activate" type="none" style="padding: 0">
+    <n-button
+        @click="activate"
+        type="none"
+        style="padding: 0"
+        aria-label="Sepetim"
+        title="Sepetim"
+    >
         <n-badge :value="cartItemCount" :show="cartItemCount > 0">
             <PhShoppingBag :size="26" />
         </n-badge>
@@ -72,9 +78,9 @@ const cartTotal = computed(() => cartStore.totalPrice);
                 <div
                     v-for="item in cartStore.items"
                     :key="item.id"
-                    class="mb-4 p-4 border border-gray-200 rounded-lg"
+                    class="mb-4 p-4 border border-gray-200 rounded-lg h-32"
                 >
-                    <div class="flex justify-between items-start">
+                    <div class="flex justify-between items-start h-full">
                         <div class="w-20 h-12 mr-4">
                             <img
                                 :src="item.image"
@@ -82,16 +88,13 @@ const cartTotal = computed(() => cartStore.totalPrice);
                                 class="w-20 h-20 object-cover"
                             />
                         </div>
-                        <div class="flex-1">
+                        <div class="flex-1 flex flex-col justify-between items-start h-full">
                             <h4 class="font-semibold">
                                 {{ item.name }}
                             </h4>
-                            <p class="text-sm text-gray-600">
-                                {{ formatPrice(item.price) }}
-                            </p>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <div class="flex items-center border rounded-md">
+                            <div
+                                class="flex items-center border rounded-md border-zinc-300 w-auto"
+                            >
                                 <n-button
                                     @click="cartStore.decreaseQuantity(item.id)"
                                     size="small"
@@ -113,20 +116,25 @@ const cartTotal = computed(() => cartStore.totalPrice);
                                     <PhPlus :size="14" />
                                 </n-button>
                             </div>
-                            <n-button
-                                @click="cartStore.removeItem(item.id)"
-                                type="error"
-                                size="small"
-                                quaternary
-                            >
-                                <PhTrash :size="16" />
-                            </n-button>
                         </div>
-                    </div>
-                    <div class="mt-2 text-right">
-                        <span class="font-semibold">{{
-                            formatPrice(item.price * item.quantity)
-                        }}</span>
+                        <div
+                            class="text-right flex flex-col h-full justify-between items-end"
+                        >
+                            <div class="flex items-center gap-2">
+                                <n-button
+                                    @click="cartStore.removeItem(item.id)"
+                                    type="error"
+                                    size="small"
+                                    quaternary
+                                >
+                                    <PhTrash :size="16" />
+                                </n-button>
+                            </div>
+
+                            <span class="font-semibold">{{
+                                formatPrice(item.price * item.quantity)
+                            }}</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -142,7 +150,7 @@ const cartTotal = computed(() => cartStore.totalPrice);
                         </div>
                     </div>
 
-                    <a href="/cart">
+                    <a href="/cart" aria-label="Sepete Git" title="Sepete Git">
                         <n-button
                             block
                             type="primary"
@@ -150,6 +158,8 @@ const cartTotal = computed(() => cartStore.totalPrice);
                             style="padding: 1.6rem"
                             :disabled="cartStore.items.length === 0"
                             href="/cart"
+                            aria-label="Ödeme Yap"
+                            title="Ödeme Yap"
                         >
                             Ödeme Yap ({{ formatPrice(cartTotal) }})
                         </n-button>
@@ -160,6 +170,8 @@ const cartTotal = computed(() => cartStore.totalPrice);
                         type="default"
                         size="large"
                         style="padding: 1.6rem; margin-top: 0.6rem"
+                        aria-label="Alışverişe Devam Et"
+                        title="Alışverişe Devam Et"
                     >
                         Alışverişe Devam Et
                     </n-button>

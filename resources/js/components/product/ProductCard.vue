@@ -2,7 +2,6 @@
 import { ref } from "vue";
 import { useCartStore } from "@/stores/cart";
 import { themeOverrides } from "../../libs/theme";
-import { NConfigProvider } from "naive-ui";
 
 const props = defineProps({
     product: {
@@ -17,10 +16,8 @@ const isAdding = ref(false);
 const addToCart = async () => {
     isAdding.value = true;
 
-    // Ürünü sepete ekle
     cart.addItem(props.product);
 
-    // Sepete ekleme animasyonu için bekle
     setTimeout(() => {
         isAdding.value = false;
     }, 1200);
@@ -75,12 +72,6 @@ const getImageUrl = (imagePath) => {
                     </h3>
                 </a>
 
-                <p
-                    v-if="product.description"
-                    class="text-gray-600 text-sm mb-4 line-clamp-2 h-10"
-                >
-                    {{ product.description }}asdasdasd
-                </p>
 
                 <div class="flex flex-col h-full justify-between">
                     <div class="flex flex-col product-card-price">

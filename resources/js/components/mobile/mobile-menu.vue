@@ -1,13 +1,9 @@
 <script lang="ts" setup>
-import { ref, computed, h, watch, render } from "vue";
-import { useCartStore } from "../../stores/cart";
-import { PhShoppingBag, PhMinus, PhPlus, PhTrash } from "@phosphor-icons/vue";
+import { ref } from "vue";
 
 defineProps({
     title: String,
 });
-
-const cartStore = useCartStore();
 
 const mobileMenu = ref(false);
 
