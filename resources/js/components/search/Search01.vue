@@ -11,7 +11,7 @@ const handleSearch = () => {
 
 <template>
     <n-button @click="handleSearch" type="none" style="padding: 0">
-        <PhMagnifyingGlass :size="26" />
+        <PhMagnifyingGlass :size="24" />
     </n-button>
 
     <n-drawer

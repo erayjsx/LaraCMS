@@ -63,19 +63,20 @@ const getImageUrl = (imagePath) => {
                 </div>
             </a>
 
-            <div class="p-4">
-                <a :href="`/${product.slug}`">
+            <div class="py-4">
+                <a :href="`/${product.slug}`" class="h-14">
                     <h3
-                        class="font-semibold text-lg mb-2 text-gray-800 line-clamp-2"
+                        class="font-semibold lg:text-lg mb-2 text-gray-800 line-clamp-2 h-14"
                     >
                         {{ product.name }}
                     </h3>
                 </a>
 
-
                 <div class="flex flex-col h-full justify-between">
                     <div class="flex flex-col product-card-price">
-                        <span class="text-2xl font-bold text-gray-900">
+                        <span
+                            class="lg:text-2xl text-lg font-bold text-gray-900"
+                        >
                             {{ formatPrice(product.price) }}
                         </span>
                         <span

@@ -43,7 +43,7 @@ onMounted(() => {
 
 const { isMobile } = useIsMobile();
 
-const slidePerViews = computed(() => (isMobile.value ? 1 : 4));
+const slidePerViews = computed(() => (isMobile.value ? 2 : 5));
 const arrowShow = computed(() => products.value.length > slidePerViews.value);
 </script>
 

@@ -51,7 +51,7 @@ const cartTotal = computed(() => cartStore.totalPrice);
         title="Sepetim"
     >
         <n-badge :value="cartItemCount" :show="cartItemCount > 0">
-            <PhShoppingBag :size="26" />
+            <PhShoppingBag :size="24" />
         </n-badge>
     </n-button>
     <n-drawer
@@ -85,10 +85,12 @@ const cartTotal = computed(() => cartStore.totalPrice);
                             <img
                                 :src="item.image"
                                 alt="Ürün Resmi"
-                                class="w-20 h-20 object-cover"
+                                class="w-20 h-24 object-cover"
                             />
                         </div>
-                        <div class="flex-1 flex flex-col justify-between items-start h-full">
+                        <div
+                            class="flex-1 flex flex-col justify-between items-start h-full"
+                        >
                             <h4 class="font-semibold">
                                 {{ item.name }}
                             </h4>
@@ -121,17 +123,16 @@ const cartTotal = computed(() => cartStore.totalPrice);
                             class="text-right flex flex-col h-full justify-between items-end"
                         >
                             <div class="flex items-center gap-2">
-                                <n-button
+                                <button
                                     @click="cartStore.removeItem(item.id)"
-                                    type="error"
-                                    size="small"
-                                    quaternary
+                                    type="none"
+                                    class="cursor-pointer"
                                 >
-                                    <PhTrash :size="16" />
-                                </n-button>
+                                    <PhTrash :size="20" color="red" />
+                                </button>
                             </div>
 
-                            <span class="font-semibold">{{
+                            <span class="font-semibold text-lg">{{
                                 formatPrice(item.price * item.quantity)
                             }}</span>
                         </div>
@@ -143,6 +144,12 @@ const cartTotal = computed(() => cartStore.totalPrice);
                 <div class="w-full space-y-4 p-0">
                     <div>
                         <div
+                            class="flex justify-between items-center text-sm mb-2"
+                        >
+                            <span>KDV (20%):</span>
+                            <span>₺400</span>
+                        </div>
+                        <div
                             class="flex justify-between items-center text-lg font-bold"
                         >
                             <span>Toplam:</span>
@@ -150,18 +157,21 @@ const cartTotal = computed(() => cartStore.totalPrice);
                         </div>
                     </div>
 
-                    <a href="/cart" aria-label="Sepete Git" title="Sepete Git">
+                    <a
+                        href="/checkout"
+                        aria-label="Sepete Git"
+                        title="Sepete Git"
+                    >
                         <n-button
                             block
                             type="primary"
                             size="large"
                             style="padding: 1.6rem"
                             :disabled="cartStore.items.length === 0"
-                            href="/cart"
                             aria-label="Ödeme Yap"
                             title="Ödeme Yap"
                         >
-                            Ödeme Yap ({{ formatPrice(cartTotal) }})
+                            Ödeme Yap
                         </n-button>
                     </a>
                     <n-button

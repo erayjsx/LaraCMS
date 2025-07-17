@@ -1,0 +1,1 @@
+const o={common:{primaryColor:"#e4261b",primaryColorHover:"#e4261b",primaryColorPressed:"#e4261b",primaryColorSuppl:"#e4261b",successColor:"#28a745",errorColor:"#dc3545",warningColor:"#ffc107",infoColor:"#17a2b8",textColor1:"#222222",textColor2:"#444444",borderColor:"#e5e5e5"}};export{o as t};

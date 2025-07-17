@@ -1,5 +1,5 @@
-<script lang="ts" setup>
-import { ref, h, watch } from "vue";
+<script setup lang="ts">
+import { ref, h, watch, computed } from "vue";
 import { useCartStore } from "../../stores/cart";
 import { themeOverrides } from "../../libs/theme";
 import { NConfigProvider, MenuOption } from "naive-ui";
@@ -8,17 +8,29 @@ import Search01 from "../search/Search01.vue";
 import Basket01 from "../basket/Basket01.vue";
 import MobileMenu from "../mobile/mobile-menu.vue";
 
-defineProps({
-    title: String,
-});
+const props = defineProps<{
+    title: string;
+    headerAlign?: string;
+    headerBgColor?: string;
+    headerForegroundColor?: string;
+}>();
+
+const headerAlign = computed(() => props.headerAlign || "left");
+const headerBgColor = computed(() => props.headerBgColor || "#fff");
+const headerForegroundColor = computed(
+    () => props.headerForegroundColor || "#000"
+);
 
 const cartStore = useCartStore();
-
 const active = ref(false);
 const activeKey = ref("");
+const menuVisible = ref(false);
 
-const activate = () => {
-    active.value = true;
+const showMenu = () => {
+    menuVisible.value = true;
+};
+const hideMenu = () => {
+    menuVisible.value = false;
 };
 
 watch(
@@ -26,63 +38,41 @@ watch(
     (newValue) => {
         if (newValue) {
             active.value = true;
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth",
-            });
+            window.scrollTo({ top: 0, behavior: "smooth" });
         }
     }
 );
 
-const menuOptions: MenuOption[] = [
+const mainMenuLinks = [
+    { name: "Ana Sayfa", href: "/" },
+    { name: "İndirim", href: "/indirim" },
     {
-        label: () =>
-            h(
-                "a",
-                {
-                    href: "/",
-                },
-                "Anasayfa"
-            ),
-        key: "anasayfa",
-    },
-    {
-        label: "Ürünler",
-        key: "urunler",
-    },
-    {
-        label: "Bilgi",
-        key: "bilgi",
-        children: [
-            {
-                label: "İletişim",
-                key: "iletisim",
-            },
-            {
-                label: "Hakkımızda",
-                key: "hakkimizda",
-            },
+        name: "Bileklik",
+        submenu: [
+            { name: "Çelik Bileklik", href: "/celik-bileklik" },
+            { name: "Deri Bileklik", href: "/deri-bileklik" },
+            { name: "Örgü Bileklik", href: "/orgu-bileklik" },
+            { name: "Taşlı Bileklik", href: "/tasli-bileklik" },
         ],
     },
+    { name: "Kampanyalar", href: "/kampanyalar" },
 ];
 </script>
 
 <template>
     <n-config-provider :theme-overrides="themeOverrides">
         <div
-            class="bg-white overflow-hidden group top-0 sticky z-50 border-b border-zinc-100"
+            :style="{
+                backgroundColor: headerBgColor,
+                color: headerForegroundColor,
+                textAlign: headerAlign,
+            }"
+            class="sticky top-0 z-50 group hover:!bg-white hover:!text-black transition-colors duration-300"
         >
             <div
-                class="container mx-auto px-4"
-                style="
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    height: 80px;
-                "
+                class="container mx-auto px-4 flex justify-between items-center h-20"
             >
-                <div class="flex items-center gap-4">
+                <div class="flex items-center gap-0">
                     <div class="lg:hidden">
                         <MobileMenu />
                     </div>
@@ -94,52 +84,89 @@ const menuOptions: MenuOption[] = [
                         title="Anasayfa"
                     >
                         <img
-                            src="https://www.wavedijital.com/logo.png"
+                            src="https://i.ibb.co/whNdFxsg/image.png"
                             alt="Wavedijital Logo"
-                            style="
-                                width: 100%;
-                                height: 100%;
-                                object-fit: contain;
-                            "
+                            class="w-32 h-20 object-contain group-hover:brightness-100 group-hover:invert transition-all duration-300"
                         />
                     </a>
                 </div>
 
-                <div
-                    style="@media screen and (max-width: 768px) {display: none}"
-                    class="max-lg:hidden"
-                >
-                    <n-menu
-                        v-model:value="activeKey"
-                        mode="horizontal"
-                        :options="menuOptions"
-                        responsive
-                        class="*:text-base *:font-medium *:*:text-base"
-                    />
+                <div class="hidden lg:flex items-center gap-6">
+                    <template v-for="link in mainMenuLinks" :key="link.name">
+                        <!-- Normal link -->
+                        <a
+                            v-if="!link.submenu"
+                            :href="link.href"
+                            class="text-base font-medium hover:opacity-75 transition-opacity"
+                        >
+                            {{ link.name }}
+                        </a>
+
+                        <!-- Mega menü trigger -->
+                        <div
+                            v-else
+                            class="relative"
+                            @mouseenter="showMenu"
+                            @mouseleave="hideMenu"
+                        >
+                            <button
+                                class="text-base font-medium cursor-pointer flex items-center justify-center h-20 gap-1"
+                            >
+                                <span>{{ link.name }}</span>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="20"
+                                    height="20"
+                                    fill="currentColor"
+                                    viewBox="0 0 256 256"
+                                    class="mb-1"
+                                >
+                                    <path
+                                        d="M216.49,104.49l-80,80a12,12,0,0,1-17,0l-80-80a12,12,0,0,1,17-17L128,159l71.51-71.52a12,12,0,0,1,17,17Z"
+                                    />
+                                </svg>
+                            </button>
+
+                            <transition name="fade">
+                                <div
+                                    v-show="menuVisible"
+                                    class="fixed top-20 left-0 right-0 z-30 bg-white text-black shadow-lg py-12 transition-all duration-200"
+                                >
+                                    <div class="container mx-auto px-4">
+                                        <div class="grid grid-cols-1 gap-4">
+                                            <ul class="space-y-2">
+                                                <li
+                                                    v-for="item in link.submenu"
+                                                    :key="item.name"
+                                                >
+                                                    <a
+                                                        :href="item.href"
+                                                        class="hover:opacity-75 transition-opacity text-base"
+                                                    >
+                                                        {{ item.name }}
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </transition>
+                            <transition name="fade">
+                                <div
+                                    v-show="menuVisible"
+                                    class="fixed inset-0 top-20 z-20 bg-black/5 backdrop-blur-sm transition-all duration-200"
+                                    @click="hideMenu"
+                                ></div>
+                            </transition>
+                        </div>
+                    </template>
                 </div>
 
-                <n-space
-                    :size="18"
-                    align="center"
-                    style="
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                    "
-                >
+                <n-space :size="4" align="center">
                     <Search01 />
-                    <n-button
-                        type="none"
-                        style="padding: 0"
-                        aria-label="Giriş Yap"
-                        title="Giriş Yap"
-                    >
-                        <a
-                            href="/login"
-                            aria-label="Giriş Yap"
-                            title="Giriş Yap"
-                        >
-                            <PhUser :size="26" />
+                    <n-button type="none" class="p-0" aria-label="Giriş Yap">
+                        <a href="/login" title="Giriş Yap">
+                            <PhUser :size="24" />
                         </a>
                     </n-button>
                     <Basket01 />
@@ -148,3 +175,14 @@ const menuOptions: MenuOption[] = [
         </div>
     </n-config-provider>
 </template>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.2s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+</style>

@@ -25,6 +25,7 @@ import {
     NFormItemRow,
     NBreadcrumb,
     NBreadcrumbItem,
+    NCheckbox,
 } from "naive-ui";
 import {
     PhUser,
@@ -75,6 +76,7 @@ const naive = create({
         NFormItemRow,
         NBreadcrumb,
         NBreadcrumbItem,
+        NCheckbox,
     ],
     themeOverrides,
 });
@@ -112,6 +114,14 @@ app.component(
     defineAsyncComponent(() =>
         import("./components/product/ProductGallery.vue")
     )
+);
+app.component(
+    "config-provider",
+    defineAsyncComponent(() => import("./components/Config.vue"))
+);
+app.component(
+    "modal",
+    defineAsyncComponent(() => import("./components/modal/Modal01.vue"))
 );
 
 app.use(pinia);

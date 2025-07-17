@@ -50,7 +50,7 @@ const cartTotal = computed(() => cartStore.totalPrice);
                     <img
                         :src="item.image"
                         alt="Ürün Resmi"
-                        class="w-20 h-20 object-cover"
+                        class="w-20 h-32 object-cover"
                     />
                 </div>
                 <div class="flex-1">

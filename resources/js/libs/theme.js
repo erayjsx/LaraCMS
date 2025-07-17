@@ -1,9 +1,9 @@
 export const themeOverrides = {
     common: {
-        primaryColor: "#000000",
-        primaryColorHover: "#000000",
-        primaryColorPressed: "#000000",
-        primaryColorSuppl: "#000000",
+        primaryColor: "#e4261b",
+        primaryColorHover: "#e4261b",
+        primaryColorPressed: "#e4261b",
+        primaryColorSuppl: "#e4261b",
         successColor: "#28a745",
         errorColor: "#dc3545",
         warningColor: "#ffc107",

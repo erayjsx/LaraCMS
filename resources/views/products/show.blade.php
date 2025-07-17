@@ -18,20 +18,20 @@
 @section('content')
 
     <div class="container mx-auto w-full px-4">
-        <n-breadcrumb class="text-sm *:text-sm">
+        <n-breadcrumb class="text-sm *:text-sm mt-3">
             <n-breadcrumb-item>Ana Sayfa</n-breadcrumb-item>
             <n-breadcrumb-item>{{ $product->name }}</n-breadcrumb-item>
         </n-breadcrumb>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 p-6">
-            <div class="space-y-4 lg:col-span-2 lg:aspect-3/4">
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-8 p-6">
+            <div class="space-y-4 lg:col-span-3 lg:aspect-3/4">
                 <product-gallery :images='@json($product->images)'></product-gallery>
             </div>
 
-            <div class="space-y-6 col-span-1">
+            <div class="space-y-6 col-span-2">
                 <div>
                     <h1 class="text-3xl font-bold text-gray-900 mb-2">{{ $product->name }}</h1>
-                    <p class="text-4xl font-bold text-blue-600 mb-4">
-                        {{ number_format($product->price, 2, ',', '.') }} ₺
+                    <p class="text-4xl font-bold text-black mb-4">
+                        ₺{{ number_format($product->price, 2, ',', '.') }} 
                     </p>
                 </div>
 
@@ -60,7 +60,7 @@
 
                     <div class="flex gap-4">
                         <button onclick="addToCart()"
-                            class="flex-1 bg-blue-600 hover:bg-blue-700 cursor-pointer text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 {{ $product->stock <= 0 ? 'opacity-50 cursor-not-allowed' : '' }}"
+                            class="flex-1 bg-black cursor-pointer text-white font-medium py-3 px-6 transition-colors duration-200 {{ $product->stock <= 0 ? 'opacity-50 cursor-not-allowed' : '' }}"
                             {{ $product->stock <= 0 ? 'disabled' : '' }}>
                             @if ($product->stock <= 0)
                                 Stokta Yok
