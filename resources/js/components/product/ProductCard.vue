@@ -90,6 +90,7 @@ const getImageUrl = (imagePath) => {
                     <n-button
                         @click="addToCart"
                         type="primary"
+                        ghost
                         :disabled="product.stock <= 0 || isAdding"
                         class="group-hover:translate-y-[-2px] hidden group-hover:flex transition-all duration-300 mt-8 product-card-button"
                     >

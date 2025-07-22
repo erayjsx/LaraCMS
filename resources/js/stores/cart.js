@@ -1,9 +1,10 @@
 import { defineStore } from "pinia";
+import _ from "lodash";
 
 export const useCartStore = defineStore("cart", {
     state: () => ({
         items: [],
-        justAdded: false, // Yeni eklenen ürün için flag
+        justAdded: false,
     }),
 
     getters: {
@@ -17,41 +18,41 @@ export const useCartStore = defineStore("cart", {
     },
 
     actions: {
-        // LocalStorage'dan sepet verilerini yükle
         loadFromStorage() {
             try {
-                const savedCart = localStorage.getItem('cart');
+                const savedCart = localStorage.getItem("cart");
                 if (savedCart) {
                     this.items = JSON.parse(savedCart);
                 }
             } catch (error) {
-                console.error('Sepet verileri localStorage\'dan yüklenemedi:', error);
+                console.error(
+                    "Sepet verileri localStorage'dan yüklenemedi:",
+                    error
+                );
                 this.items = [];
             }
         },
 
-        // Sepet verilerini localStorage'a kaydet
         saveToStorage() {
             try {
-                localStorage.setItem('cart', JSON.stringify(this.items));
+                localStorage.setItem("cart", JSON.stringify(this.items));
             } catch (error) {
-                console.error('Sepet verileri localStorage\'a kaydedilemedi:', error);
+                console.error(
+                    "Sepet verileri localStorage'a kaydedilemedi:",
+                    error
+                );
             }
         },
 
         addItem(product) {
-            const existing = this.items.find((item) => item.id === product.id);
+            const existing = _.find(this.items, { id: product.id });
             if (existing) {
                 existing.quantity += 1;
             } else {
                 this.items.push({ ...product, quantity: 1 });
             }
             this.saveToStorage();
-            
-            // Ürün eklendi flag'ini set et
             this.justAdded = true;
-            
-            // 100ms sonra flag'i resetle
             setTimeout(() => {
                 this.justAdded = false;
             }, 100);
@@ -79,7 +80,6 @@ export const useCartStore = defineStore("cart", {
             this.saveToStorage();
         },
 
-        // Sepet toplam adetini artır
         increaseQuantity(id) {
             const item = this.items.find((item) => item.id === id);
             if (item) {
@@ -88,7 +88,6 @@ export const useCartStore = defineStore("cart", {
             }
         },
 
-        // Sepet toplam adetini azalt
         decreaseQuantity(id) {
             const item = this.items.find((item) => item.id === id);
             if (item) {

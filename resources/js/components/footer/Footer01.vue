@@ -11,13 +11,18 @@ import {
     <footer class="h-80 border-t border-gray-200 pt-10 0">
         <div class="container mx-auto h-full px-4">
             <div class="footer-content">
-                <div class="footer-content-left">
-                    <img
-                        src="https://www.wavedijital.com/logo.png"
-                        alt="logo"
-                        class="w-32 h-24 object-contain"
-                    />
+                <div class="mb-4">
+                    <a href="/" class="text-lg font-semibold">Wavedijital</a>
                 </div>
+
+                <nav
+                    class="flex flex-col space-y-4 md:space-y-2 md:space-x-8 text-center md:text-left"
+                >
+                    <a href="/">Anasayfa</a>
+                    <a href="/urunler">Ürünler</a>
+                    <a href="/hakkimizda">Hakkımızda</a>
+                    <a href="/iletisim">İletişim</a>
+                </nav>
             </div>
         </div>
         <div

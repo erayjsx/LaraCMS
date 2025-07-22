@@ -1,0 +1,1 @@
+import{d as r,a as t,p as n,o as s,w as a,J as i,h as p}from"./app-C3F0tXMn.js";import{t as m}from"./theme-BHAUx5dl.js";const l=r({__name:"Config",setup(_){return(e,c)=>{const o=t("n-config-provider");return s(),n(o,{"theme-overrides":p(m)},{default:a(()=>[i(e.$slots,"default")]),_:3},8,["theme-overrides"])}}});export{l as default};

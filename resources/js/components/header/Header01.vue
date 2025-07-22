@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref, h, watch, computed } from "vue";
+import { ref, watch, computed } from "vue";
 import { useCartStore } from "../../stores/cart";
 import { themeOverrides } from "../../libs/theme";
-import { NConfigProvider, MenuOption } from "naive-ui";
+import { NConfigProvider } from "naive-ui";
 import { PhUser } from "@phosphor-icons/vue";
 import Search01 from "../search/Search01.vue";
 import Basket01 from "../basket/Basket01.vue";
@@ -23,7 +23,6 @@ const headerForegroundColor = computed(
 
 const cartStore = useCartStore();
 const active = ref(false);
-const activeKey = ref("");
 const menuVisible = ref(false);
 
 const showMenu = () => {
@@ -57,6 +56,9 @@ const mainMenuLinks = [
     },
     { name: "Kampanyalar", href: "/kampanyalar" },
 ];
+
+const firstChunk = computed(() => mainMenuLinks.value.slice(0, 3)); // 0,1,2
+const secondChunk = computed(() => mainMenuLinks.value.slice(3, 6)); // 3,4,5
 </script>
 
 <template>
@@ -79,21 +81,21 @@ const mainMenuLinks = [
 
                     <a
                         href="/"
-                        class="w-32"
+                        class="w-28 ml-4"
                         aria-label="Anasayfa"
                         title="Anasayfa"
+                        v-if="!headerAlign === 'center'"
                     >
                         <img
-                            src="https://i.ibb.co/whNdFxsg/image.png"
+                            src="https://i.ibb.co/fYdTLd9x/image.png"
                             alt="Wavedijital Logo"
-                            class="w-32 h-20 object-contain group-hover:brightness-100 group-hover:invert transition-all duration-300"
+                            class="w-28 h-20 object-contain group-hover:brightness-100 group-hover:invert transition-all duration-300"
                         />
                     </a>
                 </div>
 
-                <div class="hidden lg:flex items-center gap-6">
-                    <template v-for="link in mainMenuLinks" :key="link.name">
-                        <!-- Normal link -->
+                <div class="hidden lg:flex items-center gap-6 flex-2">
+                    <template v-for="(link, index) in mainMenuLinks" :key="index">
                         <a
                             v-if="!link.submenu"
                             :href="link.href"
@@ -102,7 +104,6 @@ const mainMenuLinks = [
                             {{ link.name }}
                         </a>
 
-                        <!-- Mega menü trigger -->
                         <div
                             v-else
                             class="relative"
@@ -162,7 +163,21 @@ const mainMenuLinks = [
                     </template>
                 </div>
 
-                <n-space :size="4" align="center">
+                <a
+                    href="/"
+                    class="flex-2 flex items-center justify-center ml-4"
+                    aria-label="Anasayfa"
+                    title="Anasayfa"
+                    v-if="headerAlign === 'center'"
+                >
+                    <img
+                        src="https://i.ibb.co/fYdTLd9x/image.png"
+                        alt="Wavedijital Logo"
+                        class="w-28 h-20 object-contain group-hover:brightness-100 group-hover:invert transition-all duration-300"
+                    />
+                </a>
+
+                <div class="flex-2 flex justify-end items-end">
                     <Search01 />
                     <n-button type="none" class="p-0" aria-label="Giriş Yap">
                         <a href="/login" title="Giriş Yap">
@@ -170,7 +185,7 @@ const mainMenuLinks = [
                         </a>
                     </n-button>
                     <Basket01 />
-                </n-space>
+                </div>
             </div>
         </div>
     </n-config-provider>

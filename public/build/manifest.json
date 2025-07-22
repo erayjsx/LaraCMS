@@ -7,25 +7,26 @@
     "file": "assets/theme-BHAUx5dl.js",
     "name": "theme"
   },
-  "_useIsMobile-Ceszz5NG.js": {
-    "file": "assets/useIsMobile-Ceszz5NG.js",
+  "_useIsMobile-DqE0q4r9.js": {
+    "file": "assets/useIsMobile-DqE0q4r9.js",
     "name": "useIsMobile",
     "imports": [
       "resources/js/app.js"
     ]
   },
   "resources/css/app.css": {
-    "file": "assets/css-B0AjIPMk.css",
+    "file": "assets/css-DjiRz5w8.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/js/app.js": {
-    "file": "assets/app-C5CTJgdu.js",
+    "file": "assets/app-C3F0tXMn.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
       "resources/js/components/header/Header01.vue",
+      "resources/js/components/header/Header02.vue",
       "resources/js/components/404.vue",
       "resources/js/components/product/ProductCard.vue",
       "resources/js/components/product/ProductList.vue",
@@ -34,11 +35,12 @@
       "resources/js/components/checkout/CheckoutList.vue",
       "resources/js/components/product/ProductGallery.vue",
       "resources/js/components/Config.vue",
-      "resources/js/components/modal/Modal01.vue"
+      "resources/js/components/modal/Modal01.vue",
+      "resources/js/components/marquee/Marquee.vue"
     ]
   },
   "resources/js/components/404.vue": {
-    "file": "assets/404-B_15ivIK.js",
+    "file": "assets/404-C8GP_i3g.js",
     "name": "404",
     "src": "resources/js/components/404.vue",
     "isDynamicEntry": true,
@@ -48,7 +50,7 @@
     ]
   },
   "resources/js/components/Config.vue": {
-    "file": "assets/Config-CjNrz2eR.js",
+    "file": "assets/Config-B09c2rhB.js",
     "name": "Config",
     "src": "resources/js/components/Config.vue",
     "isDynamicEntry": true,
@@ -58,13 +60,13 @@
     ]
   },
   "resources/js/components/carousel/Carousel01.vue": {
-    "file": "assets/Carousel01-D9HUykEq.js",
+    "file": "assets/Carousel01-Dp1zT6tr.js",
     "name": "Carousel01",
     "src": "resources/js/components/carousel/Carousel01.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_useIsMobile-Ceszz5NG.js",
+      "_useIsMobile-DqE0q4r9.js",
       "__plugin-vue_export-helper-DlAUqK2U.js"
     ],
     "css": [
@@ -72,7 +74,7 @@
     ]
   },
   "resources/js/components/checkout/CheckoutList.vue": {
-    "file": "assets/CheckoutList-CCXKTJ5Y.js",
+    "file": "assets/CheckoutList-CEgdenhn.js",
     "name": "CheckoutList",
     "src": "resources/js/components/checkout/CheckoutList.vue",
     "isDynamicEntry": true,
@@ -81,7 +83,7 @@
     ]
   },
   "resources/js/components/footer/Footer01.vue": {
-    "file": "assets/Footer01-BSNH6y-A.js",
+    "file": "assets/Footer01-ZhpeXHdr.js",
     "name": "Footer01",
     "src": "resources/js/components/footer/Footer01.vue",
     "isDynamicEntry": true,
@@ -90,7 +92,7 @@
     ]
   },
   "resources/js/components/header/Header01.vue": {
-    "file": "assets/Header01-_EeVc3Io.js",
+    "file": "assets/Header01-ANkZ2oEQ.js",
     "name": "Header01",
     "src": "resources/js/components/header/Header01.vue",
     "isDynamicEntry": true,
@@ -99,15 +101,34 @@
       "_theme-BHAUx5dl.js",
       "resources/js/components/product/ProductList.vue",
       "__plugin-vue_export-helper-DlAUqK2U.js",
-      "_useIsMobile-Ceszz5NG.js",
+      "_useIsMobile-DqE0q4r9.js",
       "resources/js/components/product/ProductCard.vue"
     ],
     "css": [
-      "assets/Header01-CKHSlR1w.css"
+      "assets/Header01-Do3ygttu.css"
+    ]
+  },
+  "resources/js/components/header/Header02.vue": {
+    "file": "assets/Header02-_4Ln7G7U.js",
+    "name": "Header02",
+    "src": "resources/js/components/header/Header02.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/components/marquee/Marquee.vue": {
+    "file": "assets/Marquee-BF6Ke4jL.js",
+    "name": "Marquee",
+    "src": "resources/js/components/marquee/Marquee.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js",
+      "__plugin-vue_export-helper-DlAUqK2U.js"
     ]
   },
   "resources/js/components/modal/Modal01.vue": {
-    "file": "assets/Modal01-Dar4Taed.js",
+    "file": "assets/Modal01-BJLCi3Ow.js",
     "name": "Modal01",
     "src": "resources/js/components/modal/Modal01.vue",
     "isDynamicEntry": true,
@@ -120,7 +141,7 @@
     ]
   },
   "resources/js/components/product/ProductCard.vue": {
-    "file": "assets/ProductCard-C8J5EHFH.js",
+    "file": "assets/ProductCard-9vcRMW0z.js",
     "name": "ProductCard",
     "src": "resources/js/components/product/ProductCard.vue",
     "isDynamicEntry": true,
@@ -130,30 +151,27 @@
       "__plugin-vue_export-helper-DlAUqK2U.js"
     ],
     "css": [
-      "assets/ProductCard-CMIVXRAA.css"
+      "assets/ProductCard-fTc80p5q.css"
     ]
   },
   "resources/js/components/product/ProductGallery.vue": {
-    "file": "assets/ProductGallery-DzKuLdGV.js",
+    "file": "assets/ProductGallery-DAItyaQZ.js",
     "name": "ProductGallery",
     "src": "resources/js/components/product/ProductGallery.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
       "__plugin-vue_export-helper-DlAUqK2U.js"
-    ],
-    "css": [
-      "assets/ProductGallery---aSd61B.css"
     ]
   },
   "resources/js/components/product/ProductList.vue": {
-    "file": "assets/ProductList-D6essg0m.js",
+    "file": "assets/ProductList-CUXwTUBm.js",
     "name": "ProductList",
     "src": "resources/js/components/product/ProductList.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js",
-      "_useIsMobile-Ceszz5NG.js",
+      "_useIsMobile-DqE0q4r9.js",
       "resources/js/components/product/ProductCard.vue",
       "__plugin-vue_export-helper-DlAUqK2U.js",
       "_theme-BHAUx5dl.js"

@@ -5,8 +5,7 @@
         [
             'id' => 1,
             'name' => 'Ürün 1',
-            'image' =>
-                'https://i.ibb.co/BKdtb1sv/image.png',
+            'image' => 'https://i.ibb.co/BKdtb1sv/image.png',
             'link' => '/products/1',
         ],
         [
@@ -20,11 +19,12 @@
 @endphp
 
 @section('content')
-    <modal></modal>
+    <!-- <modal></modal> -->
 
     <carousel01 :form-item-props='@json($items)'></carousel01>
     <div class="container mx-auto px-4">
-        <product-list title='Son Eklenen Ürünler'></product-list>
+
+        <product-list title='{{ __('messages.welcome') }}'></product-list>
         <product-list title='Yeni Sezon'></product-list>
     </div>
 @endsection

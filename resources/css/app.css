@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-    --font-sans: "Campton", sans-serif;
+    --font-sans: "DM Sans", sans-serif;
 }
 
 html,
 body {
-    font-family: "Campton", sans-serif !important;
+    font-family: "DM Sans", sans-serif !important;
 }
 
 .cart-drawer {

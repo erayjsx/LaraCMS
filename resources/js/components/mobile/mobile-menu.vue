@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { PhArrowArcRight } from "@phosphor-icons/vue";
+import { PhArrowArcRight, PhArrowRight } from "@phosphor-icons/vue";
 import { ref } from "vue";
 
 defineProps({
@@ -43,19 +43,19 @@ const detailMenuHandle = () => {
                     @click="detailMenuHandle"
                     type="none"
                     style="padding: 0"
-                    :class="'drawer text-left !w-full !border-zinc-200 !border-b !px-6 !justify-between !flex !items-center'"
+                    :class="'drawer text-left !h-14 !w-full !border-zinc-200 !border-b !px-6 !justify-between !flex !items-center'"
                 >
                     <p>Erkek</p>
-                    <PhArrowArcRight :size="16" class="inline" />
+                    <PhArrowRight :size="16" class="inline" />
                 </n-button>
                 <n-button
                     @click="detailMenuHandle"
                     type="none"
                     style="padding: 0"
-                    :class="'drawer text-left !w-full !border-zinc-200 !border-b !px-6 !justify-between !flex !items-center'"
+                    :class="'drawer !h-14 !w-full !border-zinc-200 !border-b !px-6 !justify-between !flex !items-center'"
                 >
                     <p>Kadın</p>
-                    <PhArrowArcRight :size="16" class="inline" />
+                    <PhArrowRight :size="16" class="inline" />
                 </n-button>
             </div>
 
@@ -70,6 +70,7 @@ const detailMenuHandle = () => {
     >
         <n-drawer-content
             title="Menü"
+            closable
             :header-style="{
                 fontSize: '1rem',
             }"
@@ -95,7 +96,6 @@ const detailMenuHandle = () => {
 .drawer {
     width: 100%;
     display: flex;
-    align-items: center;
     justify-content: space-between;
 }
 </style>

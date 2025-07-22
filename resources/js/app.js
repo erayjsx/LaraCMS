@@ -26,6 +26,9 @@ import {
     NBreadcrumb,
     NBreadcrumbItem,
     NCheckbox,
+    NMarquee,
+    NImage,
+    NImageGroup,
 } from "naive-ui";
 import {
     PhUser,
@@ -77,6 +80,9 @@ const naive = create({
         NBreadcrumb,
         NBreadcrumbItem,
         NCheckbox,
+        NMarquee,
+        NImage,
+        NImageGroup,
     ],
     themeOverrides,
 });
@@ -85,43 +91,62 @@ app.component(
     "header01",
     defineAsyncComponent(() => import("./components/header/Header01.vue"))
 );
+
+app.component(
+    "header02",
+    defineAsyncComponent(() => import("./components/header/Header02.vue"))
+);
+
 app.component(
     "not-found",
     defineAsyncComponent(() => import("./components/404.vue"))
 );
+
 app.component(
     "product-card",
     defineAsyncComponent(() => import("./components/product/ProductCard.vue"))
 );
+
 app.component(
     "product-list",
     defineAsyncComponent(() => import("./components/product/ProductList.vue"))
 );
+
 app.component(
     "carousel01",
     defineAsyncComponent(() => import("./components/carousel/Carousel01.vue"))
 );
+
 app.component(
     "footer01",
     defineAsyncComponent(() => import("./components/footer/Footer01.vue"))
 );
+
 app.component(
     "checkout-list",
     defineAsyncComponent(() => import("./components/checkout/CheckoutList.vue"))
 );
+
 app.component(
     "product-gallery",
     defineAsyncComponent(() =>
         import("./components/product/ProductGallery.vue")
     )
 );
+
 app.component(
     "config-provider",
     defineAsyncComponent(() => import("./components/Config.vue"))
 );
+
 app.component(
     "modal",
     defineAsyncComponent(() => import("./components/modal/Modal01.vue"))
+);
+
+app.component(
+    "marquee",
+    defineAsyncComponent(() => import("./components/marquee/Marquee.vue"))
 );
 
 app.use(pinia);
