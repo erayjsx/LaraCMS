@@ -23,8 +23,7 @@
 @endphp
 
 @section('content')
-
-    <div class="container mx-auto w-full px-4">
+    <div class="max-w-screen-xl mx-auto w-full px-4 mn-6">
         <n-breadcrumb class="text-sm *:text-sm mt-3">
             <n-breadcrumb-item>Ana Sayfa</n-breadcrumb-item>
             @if ($product->category)
@@ -33,11 +32,17 @@
             <n-breadcrumb-item>{{ $product->name }}</n-breadcrumb-item>
         </n-breadcrumb>
         <div class="flex max-lg:flex-col gap-6 lg:p-6 max-lg:py-6">
-            <div class="space-y-4 mx-auto">
-                <product-gallery :images='@json($images)'></product-gallery>
+            <div class="space-y-4 w-full">
+                <product-gallery :images='@json(
+                    $product->images->map(function ($image) {
+                        return [
+                            'url' => $image->url,
+                            'is_main' => $image->is_main,
+                        ];
+                    }))'></product-gallery>
             </div>
 
-            <div class="space-y-6 w-full max-w-lg">
+            <div class="space-y-6 w-full lg:max-w-sm xl:max-w-md">
                 <div>
                     <h1 class="text-2xl font-semibold text-gray-900 mb-6">{{ $product->name }}</h1>
                     <p class="text-2xl font-semibold text-black mb-4">
@@ -57,7 +62,7 @@
                 <div class="space-y-4">
                     <div class="flex gap-4">
                         <button onclick="addToCart()"
-                            class="flex-1 bg-black cursor-pointer text-white font-medium h-14 px-6 transition-colors duration-200 {{ $product->stock <= 0 ? 'opacity-50 cursor-not-allowed' : '' }}"
+                            class="flex-1 bg-black cursor-pointer text-white font-medium h-12 px-6 transition-colors duration-200 {{ $product->stock <= 0 ? 'opacity-50 cursor-not-allowed' : '' }}"
                             {{ $product->stock <= 0 ? 'disabled' : '' }}>
                             @if ($product->stock <= 0)
                                 Stokta Yok
@@ -76,6 +81,19 @@
                 </div>
             </div>
         </div>
+
+        <div class="max-w-screen-lg mx-auto my-8">
+            <n-tabs type="segment" animated>
+                <n-tab-pane name="oasis" tab="Ürün Açıklaması">
+                    Ürün Açıklaması
+                </n-tab-pane>
+                <n-tab-pane name="the beatles" tab="Yorumlar">
+                    Yorumlar
+                </n-tab-pane>
+            </n-tabs>
+        </div>
+
+        <product-list title="Benzer Ürünler"></product-list>
     </div>
 @endsection
 

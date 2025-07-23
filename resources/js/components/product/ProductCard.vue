@@ -42,16 +42,24 @@ const getImageUrl = (imagePath) => {
 
     return `/storage/${imagePath}`;
 };
+
+console.log("ProductCard component loaded with product:", props.product);
 </script>
 
 <template>
     <n-config-provider :theme-overrides="themeOverrides">
         <div
-            class="bg-white overflow-hidden hover:shadow-lg transition-shadow duration-300 group product-card"
+            class="bg-white overflow-hidden transition-shadow duration-300 group product-card"
         >
             <a :href="`/${product.slug}`" class="relative">
                 <img
-                    :src="getImageUrl(product.image)"
+                    :src="
+                        getImageUrl(
+                            product.main_image
+                                ? product.main_image.url
+                                : product.images[0]?.url
+                        )
+                    "
                     :alt="product.name"
                     class="w-full object-cover aspect-4/5"
                 />
@@ -92,7 +100,7 @@ const getImageUrl = (imagePath) => {
                         type="primary"
                         ghost
                         :disabled="product.stock <= 0 || isAdding"
-                        class="group-hover:translate-y-[-2px] hidden group-hover:flex transition-all duration-300 mt-8 product-card-button"
+                        class="group-hover:translate-y-[-2px] hidden group-hover:flex transition-all duration-300 mt-12 product-card-button"
                     >
                         <span v-if="product.stock <= 0">Stokta Yok</span>
                         <span
@@ -149,7 +157,7 @@ const getImageUrl = (imagePath) => {
     .product-card-button {
         display: none;
         transition: all 0.3s ease;
-        height: 3rem;
+        height: 2.2rem;
         align-items: center;
         justify-content: center;
         text-align: center;

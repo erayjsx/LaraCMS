@@ -1,1 +1,0 @@
-import{c as t,o as a,e as s,s as n,t as r}from"./app-C3F0tXMn.js";const o={key:0},u={__name:"Header02",props:{title:String,user:Object},setup(e){return(c,l)=>(a(),t("header",null,[s("h1",null,r(e.title),1),e.user?(a(),t("div",o,"Hoşgeldin, "+r(e.user.name)+"!",1)):n("",!0)]))}};export{u as default};

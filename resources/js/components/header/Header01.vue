@@ -47,6 +47,7 @@ const mainMenuLinks = [
     { name: "İndirim", href: "/indirim" },
     {
         name: "Bileklik",
+        submenuTitle: "Bileklik",
         submenu: [
             { name: "Çelik Bileklik", href: "/celik-bileklik" },
             { name: "Deri Bileklik", href: "/deri-bileklik" },
@@ -74,17 +75,23 @@ const secondChunk = computed(() => mainMenuLinks.value.slice(3, 6)); // 3,4,5
             <div
                 class="container mx-auto px-4 flex justify-between items-center h-20"
             >
-                <div class="flex items-center gap-0">
-                    <div class="lg:hidden">
-                        <MobileMenu />
+                <div
+                    class="flex items-center gap-0 justify-start"
+                    :class="{
+                        'flex-2 ': headerAlign === 'left',
+                        'flex-1 lg:hidden': headerAlign === 'center',
+                    }"
+                >
+                    <div class="lg:hidden flex flex-1 items-center">
+                        <MobileMenu :items="mainMenuLinks" />
                     </div>
 
                     <a
                         href="/"
-                        class="w-28 ml-4"
+                        class="w-28 mr-4"
                         aria-label="Anasayfa"
                         title="Anasayfa"
-                        v-if="!headerAlign === 'center'"
+                        v-if="headerAlign === 'left'"
                     >
                         <img
                             src="https://i.ibb.co/fYdTLd9x/image.png"
@@ -94,8 +101,17 @@ const secondChunk = computed(() => mainMenuLinks.value.slice(3, 6)); // 3,4,5
                     </a>
                 </div>
 
-                <div class="hidden lg:flex items-center gap-6 flex-2">
-                    <template v-for="(link, index) in mainMenuLinks" :key="index">
+                <div
+                    class="hidden lg:flex items-center gap-6"
+                    :class="{
+                        'flex-1 justify-start': headerAlign === 'center',
+                        'flex-2 justify-center': headerAlign === 'left',
+                    }"
+                >
+                    <template
+                        v-for="(link, index) in mainMenuLinks"
+                        :key="index"
+                    >
                         <a
                             v-if="!link.submenu"
                             :href="link.href"
@@ -140,6 +156,9 @@ const secondChunk = computed(() => mainMenuLinks.value.slice(3, 6)); // 3,4,5
                                                     v-for="item in link.submenu"
                                                     :key="item.name"
                                                 >
+                                                    <b class="text-black">
+                                                        {{ item.submenuTitle }}
+                                                    </b>
                                                     <a
                                                         :href="item.href"
                                                         class="hover:opacity-75 transition-opacity text-base"
@@ -165,7 +184,7 @@ const secondChunk = computed(() => mainMenuLinks.value.slice(3, 6)); // 3,4,5
 
                 <a
                     href="/"
-                    class="flex-2 flex items-center justify-center ml-4"
+                    class="flex-2 flex items-center justify-center mx-auto"
                     aria-label="Anasayfa"
                     title="Anasayfa"
                     v-if="headerAlign === 'center'"
@@ -177,7 +196,7 @@ const secondChunk = computed(() => mainMenuLinks.value.slice(3, 6)); // 3,4,5
                     />
                 </a>
 
-                <div class="flex-2 flex justify-end items-end">
+                <div class="flex-1 flex justify-end items-end">
                     <Search01 />
                     <n-button type="none" class="p-0" aria-label="Giriş Yap">
                         <a href="/login" title="Giriş Yap">

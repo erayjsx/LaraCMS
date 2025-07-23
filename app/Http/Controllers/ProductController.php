@@ -12,13 +12,17 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        
+        $products = Product::with([
+            'images',
+            'mainImage',
+            'category'
+        ])->get();
+
         // API request için JSON döndür
         if (request()->expectsJson()) {
             return response()->json($products);
         }
-        
+
         // Normal sayfa isteği için view döndür
         return view('products.index', compact('products'));
     }
@@ -41,11 +45,22 @@ class ProductController extends Controller
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
-            'image' => 'nullable|string|max:255',
+            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'slug' => 'required|string|unique:products,slug|max:255',
         ]);
 
         $product = Product::create($validated);
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $key => $image) {
+                $path = $image->store('products', 'public');
+
+                $product->images()->create([
+                    'url' => $path,
+                    'is_main' => $key === 0 // İlk resim ana resim olarak işaretlenir
+                ]);
+            }
+        }
 
         if ($request->expectsJson()) {
             return response()->json($product, 201);
@@ -60,12 +75,12 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        $product = Product::findOrFail($id);
-        
+        $product = Product::with(['images', 'mainImage'])->findOrFail($id);
+
         if (request()->expectsJson()) {
             return response()->json($product);
         }
-        
+
         return view('products.show', compact('product'));
     }
 
@@ -74,12 +89,12 @@ class ProductController extends Controller
      */
     public function showBySlug(string $slug)
     {
-        $product = Product::where('slug', $slug)->firstOrFail();
-        
+        $product = Product::with(['images', 'mainImage'])->where('slug', $slug)->firstOrFail();
+
         if (request()->expectsJson()) {
             return response()->json($product);
         }
-        
+
         return view('products.show', compact('product'));
     }
 
@@ -98,7 +113,7 @@ class ProductController extends Controller
     public function update(Request $request, string $id)
     {
         $product = Product::findOrFail($id);
-        
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',

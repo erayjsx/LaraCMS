@@ -1,39 +1,30 @@
 <template>
-    <n-image-group show-toolbar-tooltip class="max-h-96">
+    <n-image-group show-toolbar-tooltip>
         <n-carousel
             :slides-per-view="1"
-            :space-between="20"
-            :loop="false"
+            :loop="true"
             draggable
+            autoplay
+            centered-slides="true"
+            dot-type="line"
+            interval="5000"
+            class="lg:max-h-lg h-full items-center justify-center"
         >
             <n-image
                 v-for="(image, index) in images"
                 :key="index"
-                :src="image.large"
-                class="h-full aspect-square *:!object-cover object-center *:mx-auto"
+                :src="image.url"
+                class="h-full w-full !mx-auto aspect-square !object-cover object-center *:!mx-auto"
             />
         </n-carousel>
     </n-image-group>
 </template>
 
-<script>
-export default {
-    name: "ProductGallery",
-    data() {
-        return {
-            images: [
-                {
-                    thumb: "https://cdn.myikas.com/images/20c102e9-75bf-47a9-9605-828b3a311626/b642a691-ac1f-4a49-9ce4-b1f54a9e7d7a/1080/jerseymodel2urunon.webp",
-                    large: "https://cdn.myikas.com/images/20c102e9-75bf-47a9-9605-828b3a311626/b642a691-ac1f-4a49-9ce4-b1f54a9e7d7a/1080/jerseymodel2urunon.webp",
-                    caption: "Ürün Görseli 1",
-                },
-                {
-                    thumb: "https://cdn.myikas.com/images/0b03644a-1913-45a8-805d-79ffa5a00641/cd39a931-962f-41cc-8348-13f6768bac4c/360/siyahsalamanderarka.webp",
-                    large: "https://cdn.myikas.com/images/0b03644a-1913-45a8-805d-79ffa5a00641/cd39a931-962f-41cc-8348-13f6768bac4c/360/siyahsalamanderarka.webp",
-                    caption: "Ürün Görseli 2",
-                },
-            ],
-        };
+<script lang="ts" setup>
+defineProps({
+    images: {
+        type: Array,
+        required: true,
     },
-};
+});
 </script>

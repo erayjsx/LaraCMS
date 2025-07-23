@@ -1,9 +1,15 @@
 <script lang="ts" setup>
-import { PhArrowArcRight, PhArrowRight } from "@phosphor-icons/vue";
+import {
+    PhArrowArcRight,
+    PhArrowRight,
+    PhCaretLeft,
+    PhCaretRight,
+} from "@phosphor-icons/vue";
 import { ref } from "vue";
 
 defineProps({
     title: String,
+    items: Array,
 });
 
 const mobileMenu = ref(false);
@@ -27,7 +33,7 @@ const detailMenuHandle = () => {
         style="width: 80%; max-width: 500px"
     >
         <n-drawer-content
-            title="Menü"
+            title="Charmy"
             closable
             :header-style="{
                 fontSize: '1rem',
@@ -35,52 +41,57 @@ const detailMenuHandle = () => {
             :style="{ padding: '0' }"
         >
             <div
+                v-for="menu in items"
                 class="flex flex-col items-start justify-start *:h-14 *:flex *:items-center *:border-b *:!border-zinc-200 *:px-6 *:w-full"
             >
-                <a href="/">Ana Sayfa</a>
-                <a href="/" class="text-red-800">Yeni Sezon</a>
+                <a :href="menu.href" v-if="!menu.submenu" class="text-lg">{{
+                    menu.name
+                }}</a>
                 <n-button
+                    v-if="menu.submenu"
                     @click="detailMenuHandle"
                     type="none"
                     style="padding: 0"
-                    :class="'drawer text-left !h-14 !w-full !border-zinc-200 !border-b !px-6 !justify-between !flex !items-center'"
+                    :class="'*:w-full text-left !h-14 !w-full !border-zinc-200 !border-b !px-6 '"
                 >
-                    <p>Erkek</p>
-                    <PhArrowRight :size="16" class="inline" />
-                </n-button>
-                <n-button
-                    @click="detailMenuHandle"
-                    type="none"
-                    style="padding: 0"
-                    :class="'drawer !h-14 !w-full !border-zinc-200 !border-b !px-6 !justify-between !flex !items-center'"
-                >
-                    <p>Kadın</p>
-                    <PhArrowRight :size="16" class="inline" />
-                </n-button>
-            </div>
+                    <div
+                        class="flex items-center gap-2 justify-between !w-full"
+                    >
+                        <p class="mr-auto text-lg">{{ menu.name }}</p>
+                        <PhCaretRight :size="20" class="inline ml-auto" />
+                    </div>
+                    <template>
+                        <n-drawer
+                            v-model:show="detailMenu"
+                            v-model:exit="mobileMenu"
+                            placement="left"
+                            style="width: 80%; max-width: 500px"
+                        >
+                            <n-drawer-content
+                                :header-style="{
+                                    fontSize: '1rem',
+                                }"
+                                class="drawer"
+                            >
+                                <button
+                                    v-on:click="detailMenu = false"
+                                    class="h-14 flex items-center gap-4 bg-zinc-50 px-6 border-b w-full justify-start border-zinc-200"
+                                >
+                                    <PhCaretLeft :size="18" weight="bold" />
+                                    <p>Geri</p>
+                                </button>
+                                <div
+                                    v-for="link in menu.submenu"
+                                    class="flex flex-col *:text-lg items-start justify-start *:h-14 *:flex *:items-center *:border-b *:!border-zinc-200 *:px-6 *:w-full"
+                                >
+                                    <a :href="link.href">{{ link.name }}</a>
+                                </div>
 
-            <template #footer> </template>
-        </n-drawer-content>
-    </n-drawer>
-
-    <n-drawer
-        v-model:show="detailMenu"
-        placement="left"
-        style="width: 80%; max-width: 500px"
-    >
-        <n-drawer-content
-            title="Menü"
-            closable
-            :header-style="{
-                fontSize: '1rem',
-            }"
-            class="drawer"
-        >
-            <div
-                class="flex flex-col items-start justify-start *:h-14 *:flex *:items-center *:border-b *:!border-zinc-200 *:px-6 *:w-full"
-            >
-                <a href="/">Giyim</a>
-                <a href="/">Ayakkabı</a>
+                                <template #footer> </template>
+                            </n-drawer-content>
+                        </n-drawer>
+                    </template>
+                </n-button>
             </div>
 
             <template #footer> </template>

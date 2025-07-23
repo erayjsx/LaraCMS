@@ -36,10 +36,11 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->group(function () {
     Route::post('/orders', [OrderController::class, 'store'])->middleware('auth');
-    Route::get('/me', function () {
-        return view('me.index');
-    })->name('me');
 });
+
+Route::get('/me', function () {
+    return view('me.index');
+})->name('me');
 
 Route::resource('products', ProductController::class);
 Route::get('/{slug}', [SlugController::class, 'resolve'])->name('slug.resolve');

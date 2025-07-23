@@ -5,9 +5,10 @@
         <div class="container mx-auto flex row px-4 gap-6 h-screen items-center justify-center">
             <div
                 class="w-full flex flex-col justify-center items-center max-w-md mx-auto shadow-lg rounded-2xl border-2 border-zinc-200 bg-white p-6">
-                <img src="https://i.ibb.co/fYdTLd9x/image.png" alt="Wavedijital Logo"
-                    class="w-28 h-20 object-contain group-hover:brightness-100 group-hover:invert transition-all duration-300 brightness-75 mb-2 invert" />
-
+                <a href="/">
+                    <img src="https://i.ibb.co/fYdTLd9x/image.png" alt="Wavedijital Logo"
+                        class="w-28 h-20 object-contain group-hover:brightness-100 group-hover:invert transition-all duration-300 brightness-75 mb-2 invert" />
+                </a>
                 <n-tabs class="card-tabs " default-value="signin" size="large" type="segment" animated
                     pane-wrapper-style="margin: 0 -4px"
                     pane-style="padding-left: 4px; padding-right: 4px; box-sizing: border-box;">

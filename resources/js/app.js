@@ -29,6 +29,7 @@ import {
     NMarquee,
     NImage,
     NImageGroup,
+    NAvatar,
 } from "naive-ui";
 import {
     PhUser,
@@ -46,6 +47,7 @@ import {
     PhSpinnerGap,
     PhMagnifyingGlass,
     PhList,
+    PhCaretRight,
 } from "@phosphor-icons/vue";
 
 import { themeOverrides } from "./libs/theme";
@@ -83,6 +85,7 @@ const naive = create({
         NMarquee,
         NImage,
         NImageGroup,
+        NAvatar,
     ],
     themeOverrides,
 });
@@ -167,6 +170,7 @@ app.component("PhShoppingCart", PhShoppingCart);
 app.component("PhSpinnerGap", PhSpinnerGap);
 app.component("PhMagnifyingGlass", PhMagnifyingGlass);
 app.component("PhList", PhList);
+app.component("PhCaretRight", PhCaretRight);
 
 app.mount("#app");
 

@@ -21,7 +21,7 @@ const handleSearch = () => {
         :style="{ height: '100%', maxHeight: '52rem' }"
     >
         <n-drawer-content
-            title="Ürün Ara"
+            title="Arama"
             closable
             :header-style="{
                 paddingTop: '1.5rem',
@@ -37,7 +37,7 @@ const handleSearch = () => {
             }"
         >
             <div
-                class="max-w-screen-xl mx-auto flex flex-col justify-center items-center p-0"
+                class="max-w-screen-xl mx-auto px-4 lg:px-6 flex flex-col justify-center items-center p-0"
             >
                 <n-input
                     placeholder="Ürün adı veya açıklama..."
