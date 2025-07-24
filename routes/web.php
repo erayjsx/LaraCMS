@@ -6,10 +6,12 @@ use App\Models\User;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SlugController;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     $users = User::all();
-    return view('welcome', compact('users'));
+    $products = \App\Models\Product::with('mainImage')->get();
+    return view('welcome', compact('users', 'products'));
 });
 
 Route::get('/404', function () {
@@ -37,8 +39,10 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware(['auth'])->group(function () {
     Route::post('/orders', [OrderController::class, 'store'])->middleware('auth');
 });
-
 Route::get('/me', function () {
+    if (!Auth::check()) {
+        return redirect()->route('login');
+    }
     return view('me.index');
 })->name('me');
 

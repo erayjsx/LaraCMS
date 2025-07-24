@@ -1,0 +1,1 @@
+import{f as r,C as s,D as d}from"./app-B9EfteUD.js";function w(){const e=r(window.innerWidth<=768),n=((t,i)=>{let o;return()=>{clearTimeout(o),o=setTimeout(t,i)}})(()=>{e.value=window.innerWidth<=768},150);return s(()=>window.addEventListener("resize",n)),d(()=>window.removeEventListener("resize",n)),{isMobile:e}}export{w as u};

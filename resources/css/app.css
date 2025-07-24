@@ -20,3 +20,10 @@ body {
     width: 1.5rem;
     border-radius: 1rem;
 }
+
+.n-collapse
+    .n-collapse-item
+    .n-collapse-item__header
+    .n-collapse-item__header-main {
+    justify-content: space-between;
+}

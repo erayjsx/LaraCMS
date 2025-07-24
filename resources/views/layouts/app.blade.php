@@ -1,3 +1,12 @@
+@php
+    $login = auth()->user() ? true : false;
+
+    $backgroundColor = '#e4261b';
+    $foregroundColor = '#fff';
+    $headerTitle = 'E-Ticaret';
+    $headerAlign = 'center';
+@endphp
+
 <!DOCTYPE html>
 <html lang="tr" data-bs-theme="light">
 
@@ -21,7 +30,8 @@
     <div id="app">
         <div class="top-0 sticky z-10">
             <marquee></marquee>
-            <header01 title="E-Ticaret" header-align="center" header-bg-color="#e4261b" header-foreground-color="#fff">
+            <header01 title="{{ $headerTitle }}" header-align="{{ $headerAlign }}" login="{{ $login ? 'true' : 'false' }}"
+                header-bg-color="{{ $backgroundColor }}" header-foreground-color="{{ $foregroundColor }}">
             </header01>
         </div>
 

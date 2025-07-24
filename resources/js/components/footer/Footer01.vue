@@ -23,13 +23,13 @@ import {
             </div>
 
             <div
-                class="flex row justify-center gap-12 h-full w-full max-lg:gap-y-8 max-lg:flex-col max-lg:gap-4"
+                class="flex row gap-16 h-full max-md:gap-y-8 max-md:flex-col max-md:gap-4"
             >
                 <div class="h-full">
-                    <div class="mb-2 font-bold">Kurumsal</div>
+                    <div class="mb-2 text-lg font-medium">Kategoriler</div>
 
                     <nav
-                        class="flex flex-col space-y-4 md:space-y-2 md:space-x-8 text-left !*:text-xs *:hover:underline *:opacity-75 hover:opacity-100"
+                        class="flex flex-col space-y-4 md:space-y-3 md:space-x-8 text-left *:text-base *:hover:underline *:opacity-75 hover:opacity-100"
                     >
                         <a href="/">Anasayfa</a>
                         <a href="/urunler">Ürünler</a>
@@ -39,28 +39,26 @@ import {
                 </div>
 
                 <div class="h-full">
-                    <div class="mb-2 font-bold">Kurumsal</div>
+                    <div class="mb-2 text-lg font-medium">Hakkımızda</div>
 
                     <nav
-                        class="flex flex-col space-y-4 md:space-y-2 md:space-x-8 text-left !*:text-xs *:hover:underline *:opacity-75 hover:opacity-100"
+                        class="flex flex-col space-y-4 md:space-y-3 md:space-x-8 text-left *:text-base *:hover:underline *:opacity-75 hover:opacity-100"
                     >
-                        <a href="/">Anasayfa</a>
-                        <a href="/urunler">Ürünler</a>
-                        <a href="/hakkimizda">Hakkımızda</a>
                         <a href="/iletisim">İletişim</a>
+                        <a href="/iletisim">Sıkça Sorulan Sorular</a>
                     </nav>
                 </div>
 
                 <div class="h-full">
-                    <div class="mb-2 font-bold">Kurumsal</div>
+                    <div class="mb-2 text-lg font-medium">Destek</div>
 
                     <nav
-                        class="flex flex-col space-y-4 md:space-y-2 md:space-x-8 text-left !*:text-xs *:hover:underline *:opacity-75 hover:opacity-100"
+                        class="flex flex-col space-y-4 md:space-y-3 md:space-x-8 text-left *:text-base *:hover:underline *:opacity-75 hover:opacity-100"
                     >
-                        <a href="/">Anasayfa</a>
-                        <a href="/urunler">Ürünler</a>
-                        <a href="/hakkimizda">Hakkımızda</a>
-                        <a href="/iletisim">İletişim</a>
+                        <a href="/">Kullanıcı Sözleşmesi</a>
+                        <a href="/urunler">Aydınlatma Metni</a>
+                        <a href="/hakkimizda">Beden Tablosu</a>
+                        <a href="/iletisim">Kargo ve İade</a>
                     </nav>
                 </div>
             </div>

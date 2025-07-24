@@ -22,8 +22,9 @@
     <!-- <modal></modal> -->
 
     <carousel01 :form-item-props='@json($items)'></carousel01>
+
     <div class="container mx-auto px-4">
-        <product-list title='{{ __('messages.welcome') }}'></product-list>
-        <product-list title='Yeni Sezon'></product-list>
+        <product-list :title="'{{ __('messages.welcome') }}'" :items='@json($products)'></product-list>
+        <product-list :title="'Yeni Sezon'" :items='@json($products)'></product-list>
     </div>
 @endsection

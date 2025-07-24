@@ -30,6 +30,9 @@ import {
     NImage,
     NImageGroup,
     NAvatar,
+    NCollapse,
+    NCollapseItem,
+    NEmpty,
 } from "naive-ui";
 import {
     PhUser,
@@ -86,6 +89,9 @@ const naive = create({
         NImage,
         NImageGroup,
         NAvatar,
+        NCollapse,
+        NCollapseItem,
+        NEmpty
     ],
     themeOverrides,
 });

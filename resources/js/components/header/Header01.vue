@@ -10,6 +10,7 @@ import MobileMenu from "../mobile/mobile-menu.vue";
 
 const props = defineProps<{
     title: string;
+    login: boolean;
     headerAlign?: string;
     headerBgColor?: string;
     headerForegroundColor?: string;
@@ -91,6 +92,7 @@ const secondChunk = computed(() => mainMenuLinks.value.slice(3, 6)); // 3,4,5
                         class="w-28 mr-4"
                         aria-label="Anasayfa"
                         title="Anasayfa"
+                        wire:navigate
                         v-if="headerAlign === 'left'"
                     >
                         <img
@@ -113,6 +115,7 @@ const secondChunk = computed(() => mainMenuLinks.value.slice(3, 6)); // 3,4,5
                         :key="index"
                     >
                         <a
+                            wire:navigate
                             v-if="!link.submenu"
                             :href="link.href"
                             class="text-base font-medium hover:opacity-75 transition-opacity"
@@ -161,6 +164,7 @@ const secondChunk = computed(() => mainMenuLinks.value.slice(3, 6)); // 3,4,5
                                                     </b>
                                                     <a
                                                         :href="item.href"
+                                                        wire:navigate
                                                         class="hover:opacity-75 transition-opacity text-base"
                                                     >
                                                         {{ item.name }}
@@ -183,6 +187,7 @@ const secondChunk = computed(() => mainMenuLinks.value.slice(3, 6)); // 3,4,5
                 </div>
 
                 <a
+                    wire:navigate
                     href="/"
                     class="flex-2 flex items-center justify-center mx-auto"
                     aria-label="Anasayfa"
@@ -199,7 +204,10 @@ const secondChunk = computed(() => mainMenuLinks.value.slice(3, 6)); // 3,4,5
                 <div class="flex-1 flex justify-end items-end">
                     <Search01 />
                     <n-button type="none" class="p-0" aria-label="Giriş Yap">
-                        <a href="/login" title="Giriş Yap">
+                        <a
+                            :href="props.login === 'true' ? '/me' : '/login'"
+                            title="Giriş Yap"
+                        >
                             <PhUser :size="24" />
                         </a>
                     </n-button>

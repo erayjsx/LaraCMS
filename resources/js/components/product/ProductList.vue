@@ -3,8 +3,15 @@ import { ref, onMounted, computed } from "vue";
 import { useIsMobile } from "../../libs/useIsMobile";
 import ProductCard from "./ProductCard.vue";
 
-defineProps({
-    title: String,
+const props = defineProps({
+    title: {
+        type: String,
+        required: true,
+    },
+    items: {
+        type: Array,
+        required: true,
+    },
 });
 
 const products = ref([]);
@@ -49,75 +56,12 @@ const arrowShow = computed(() => products.value.length > slidePerViews.value);
 
 <template>
     <div class="py-8 w-full px-0">
-        <h2 v-if="title" class="text-2xl font-semibold mb-8 text-gray-800">
-            {{ title }}
+        <h2
+            v-if="props.title"
+            class="text-2xl font-semibold mb-8 text-gray-800"
+        >
+            {{ props.title }}
         </h2>
-
-        <div v-if="loading" class="flex justify-center items-center py-12">
-            <PhSpinnerGap :size="48" class="animate-spin" />
-        </div>
-
-        <div v-else-if="error" class="text-center py-12">
-            <div
-                class="bg-red-50 border border-red-200 rounded-lg p-6 max-w-md mx-auto"
-            >
-                <div
-                    class="flex items-center justify-center w-12 h-12 mx-auto mb-4 bg-red-100 rounded-full"
-                >
-                    <svg
-                        class="w-6 h-6 text-red-600"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                        ></path>
-                    </svg>
-                </div>
-                <h3 class="text-lg font-medium text-red-800 mb-2">Hata</h3>
-                <p class="text-red-600 mb-4">{{ error }}</p>
-                <button
-                    @click="fetchProducts"
-                    class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors duration-200"
-                >
-                    Tekrar Dene
-                </button>
-            </div>
-        </div>
-
-        <div v-else-if="products.length === 0" class="text-center py-12">
-            <div
-                class="bg-gray-50 border border-gray-200 rounded-lg p-6 max-w-md mx-auto"
-            >
-                <div
-                    class="flex items-center justify-center w-12 h-12 mx-auto mb-4 bg-gray-100 rounded-full"
-                >
-                    <svg
-                        class="w-6 h-6 text-gray-600"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2M4 13h2m13-8a2 2 0 00-2-2H9a2 2 0 00-2 2v1m8 0V6a2 2 0 00-2-2H9a2 2 0 00-2 2v1"
-                        ></path>
-                    </svg>
-                </div>
-                <h3 class="text-lg font-medium text-gray-800 mb-2">
-                    Henüz ürün yok
-                </h3>
-                <p class="text-gray-600">
-                    Şu anda görüntülenecek ürün bulunmamaktadır.
-                </p>
-            </div>
-        </div>
 
         <n-carousel
             :slides-per-view="slidePerViews"

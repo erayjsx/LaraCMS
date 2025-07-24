@@ -42,8 +42,6 @@ const getImageUrl = (imagePath) => {
 
     return `/storage/${imagePath}`;
 };
-
-console.log("ProductCard component loaded with product:", props.product);
 </script>
 
 <template>
@@ -51,7 +49,7 @@ console.log("ProductCard component loaded with product:", props.product);
         <div
             class="bg-white overflow-hidden transition-shadow duration-300 group product-card"
         >
-            <a :href="`/${product.slug}`" class="relative">
+            <a :href="`/${product.slug}`" wire:navigate class="relative">
                 <img
                     :src="
                         getImageUrl(
